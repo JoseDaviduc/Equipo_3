@@ -21,7 +21,7 @@ body {
     width: 80%;
     margin: auto;
     padding: 20px;
-    background-color: #6d09df;
+    background-color: #eeecf0;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
   
@@ -38,7 +38,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #430dd6;
+    background-color: #f1eff7;
   }
   
   .package h2 {
