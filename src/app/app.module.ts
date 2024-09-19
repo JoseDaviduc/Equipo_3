@@ -13,7 +13,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     InicioComponent,
     HistoriaComponent,
     PaquetesComponent,
-    ContactoComponent
+    ContactoComponent,
+  
   ],
   imports: [
     BrowserModule,

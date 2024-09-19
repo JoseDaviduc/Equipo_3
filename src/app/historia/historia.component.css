@@ -1,0 +1,88 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ac0883;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+  }
+  
+  /* Encabezado con imagen de fondo */
+  header {
+    background-image: url('/assets/fondo1.png'); /* Aquí va la ruta de tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 60px 20px; /* Espaciado ajustado para el encabezado */
+    height: 50px; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea el contenido en la parte superior */
+    align-items: center;
+  }
+  
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición oscura */
+    z-index: 1;
+  }
+  
+  .header-container {
+    position: relative;
+    z-index: 2;
+    margin-top: 20px; /* Espacio adicional para el título */
+  }
+  
+  .header-container h1 {
+    margin: 0;
+    font-size: 3rem;
+  }
+  
+  .header-container p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Sección de descripción */
+  section.about {
+    padding: 40px 20px; /* Mayor espaciado para mejor visibilidad */
+    max-width: 800px;
+    margin: 20px auto; /* Ajusta el margen superior e inferior */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about h2 {
+    text-align: center;
+    color: #e67e22;
+    margin-top: 0; /* Elimina el margen superior para acercar al encabezado */
+  }
+  
+  .about p {
+    text-align: justify;
+    font-size: 1.1rem;
+    margin: 10px 0;
+  }
+  
+  /* Pie de página */
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: relative;
+    width: 100%;
+    margin-top: 20px; /* Espacio adicional antes del pie de página */
+  }
+  

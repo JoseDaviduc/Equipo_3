@@ -1,59 +1,120 @@
+/* Estilos generales de la sección */
 .services-section {
-    text-align: center;
-    margin: 50px 0;
-  }
-  
-  .service-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .service-card {
-    background-color: #f3f3f5;
-    border: 1px solid #e9e7ee;
-    padding: 20px;
-    width: 300px;
-    margin: 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .service-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .service-card h3 {
-    font-size: 1.5em;
-    margin: 20px 0;
-  }
-  
-  .service-card ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .service-card ul li {
-    margin: 10px 0;
-  }
-  
-  .register-btn {
-    background-color: #ffcc00;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .register-btn:hover {
-    background-color: #e6b800;
-  }
-  
+  text-align: center;
+  margin: 50px 0;
+  font-family: Arial, sans-serif; /* Cambia la fuente a Arial */
+}
+.services-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('src\assets\fondo1.png'); /* Ruta de la imagen de fondo */
+  background-size: cover; /* Asegura que la imagen cubra toda la sección */
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* Envía la imagen al fondo */
+}
+
+.service-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* Estilos de la tarjeta de servicio */
+.service-card {
+  background-color: #f3f3f5;
+  border: 1px solid #e9e7ee;
+  width: 300px;
+  margin: 20px;
+  text-align: left; /* Alinea el texto a la izquierda */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Para posicionar el título sobre la imagen */
+  overflow: hidden; /* Asegura que la imagen no se desborde */
+  font-family: Arial, sans-serif; /* Cambia la fuente a Arial */
+  font-size: 14px; /* Establece el tamaño de fuente a 14px */
+}
+
+/* Contenedor para el título y la imagen */
+.service-card-header {
+  position: relative; /* Para posicionar el título sobre la imagen */
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px; /* Ajusta la altura según necesites */
+  object-fit: cover; /* Ajusta la imagen para cubrir el área del contenedor */
+  border-bottom: 1px solid #6b6161; /* Separador entre la imagen y el contenido */
+}
+
+.service-card h3 {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 5px; /* Espacio alrededor del título */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center; /* Centra el título */
+  background: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para mejorar la legibilidad */
+  border-bottom: 2px solid #ddd; /* Línea separadora entre el título y la imagen */
+}
+
+.service-card-content {
+  padding: 20px; /* Añade padding para el contenido debajo del título y la imagen */
+  padding-top: 220px; /* Ajusta este valor para crear un espacio suficiente debajo del título */
+}
+
+.service-card-content p {
+  margin: 10px 0; /* Ajusta el espacio debajo del párrafo */
+}
+
+.service-card-content ul {
+  list-style-type: disc; /* Utiliza viñetas para los elementos de la lista */
+  padding-left: 20px; /* Añade espacio a la izquierda para las viñetas */
+  margin: 10px 0;
+}
+
+.service-card-content ul li {
+  margin: 5px 0; /* Espacio entre los elementos de la lista */
+}
+
+.register-btn {
+  background-color: #ffcc00;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 20px auto; /* Centra el botón horizontalmente */
+  display: block; /* Asegura que el botón sea un bloque para que el margen auto funcione */
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #e6b800;
+}
+
+/* Imágenes de fondo en lugar de imágenes */
+#paquete-cumpleanos, #paquete-boda, #paquete-individuales {
+  background-size: cover;
+  background-position: center;
+}
+
+#paquete-cumpleanos {
+  background-image: url('/assets/imagen2.jpg');
+}
+
+#paquete-boda {
+  background-image: url('/assets/imagen1.jpg');
+}
+
+#paquete-individuales {
+  background-image: url('/assets/imagen3.jpg');
+}

@@ -1,43 +1,46 @@
 /* Sección de contacto */
+/* Sección de contacto */
 .contact {
-    text-align: center;
-    padding: 40px 0;
-    background-color: #f9f9f9;
-  }
-  
-  .contact h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #2c3e50;
-  }
-  
-  .contact-info p {
-    margin-bottom: 20px;
-  }
-  
-  .contact-info ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .contact-info ul li {
-    margin-bottom: 10px;
-  }
-  
-  .contact-info ul li a {
-    text-decoration: none;
-    font-size: 1.2em;
-    color: #007bff;
-  }
-  
-  .contact-info ul li a:hover {
-    color: #0056b3;
-  }
-  
-  /* Estilo para el mapa */
-  .map-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f1f1f7;
+  background-image: url('src\assets\imagen8.png'); /* Reemplaza con la ruta de tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(238, 234, 234, 0.5); /* Superposición oscura */
+  z-index: 1;
+}
+
+.contact h2, 
+.contact-info p, 
+.contact-info ul li a {
+  position: relative;
+  z-index: 2;
+  color: #1a1818; /* Asegura que el texto sea visible */
+}
+
+/* Estilo para el mapa */
+.map-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2; /* Asegura que el mapa esté por encima de la superposición */
+  background-color: transparent; /* Asegura que el contenedor del mapa no tenga fondo */
+}
+
+.map-container iframe {
+  position: relative;
+  z-index: 3; /* Mantiene el mapa por encima de todo */
+}
