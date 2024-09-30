@@ -1,6 +1,8 @@
 <!-- Otras secciones de tu página, incluyendo la sección de servicios -->
 <div class="services-section">
-  <h2>MANEJAMOS LOS SIGUIENTES PAQUETES</h2>
+  <h2 style="display: inline;">MANEJAMOS LOS SIGUIENTES PAQUETES</h2>
+  <button class="design-package-btn" style="margin-left: 300px;" [routerLink]="['/crear-paquete']">Diseña tu paquete</button>
+  
   <div class="service-container">
     <div class="service-card">
       <h3>Paquete Cumpleaños</h3>
@@ -12,7 +14,7 @@
         <li>Precio: $1600</li>
         <li>Opción de agregar personaje por un total de $2000</li>
       </ul>
-      <button class="register-btn">Registrar evento</button>
+      <button class="register-btn" [routerLink]="['/registro-evento']">Registrar evento</button>
     </div>
 
     <div class="service-card">
@@ -25,7 +27,7 @@
         <li>Techo con telas y luces LED ($1800)</li>
         <li>Mesa Principal ($1800)</li>
       </ul>
-      <button class="register-btn">Registrar evento</button>
+      <button class="register-btn" [routerLink]="['/registro-evento']">Registrar evento</button>
     </div>
     
     <div class="service-card">
@@ -37,7 +39,8 @@
         <li>Decoración para la mesa de dulces (incluyendo dulces): $3000</li>
         <li>Set para tomarse fotos: $700</li>
       </ul>
-      <button class="register-btn">Registrar evento</button>
+      <button class="register-btn" [routerLink]="['/registro-evento']">Registrar evento</button>
     </div>
   </div>
 </div>
+

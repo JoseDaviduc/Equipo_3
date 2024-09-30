@@ -1,0 +1,136 @@
+<div class="form-container">
+  <form [formGroup]="eventForm">
+    <h3>Información del Cliente</h3>
+    <label>
+      Nombre completo:
+      <input formControlName="clientName" type="text" />
+    </label>
+    <label>
+      Teléfono de contacto:
+      <input formControlName="clientPhone" type="text" />
+    </label>
+    <label>
+      Correo electrónico:
+      <input formControlName="clientEmail" type="email" />
+    </label>
+
+    <h3>Información del Evento</h3>
+    <label>
+      Fecha del evento:
+      <input formControlName="eventDate" type="date" />
+    </label>
+    <label>
+      Hora de inicio:
+      <input formControlName="startTime" type="time" />
+    </label>
+    <label>
+      Hora de finalización:
+      <input formControlName="endTime" type="time" />
+    </label>
+    <label>
+      Dirección del lugar del evento:
+      <input formControlName="eventLocation" type="text" />
+    </label>
+
+    <h3>Selecciona los Elementos para Crear tu Paquete</h3>
+
+    <!-- Decoración -->
+    <h4>Decoración</h4>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, balloonStripPrice)" />
+      Tira de Globos ($300)
+    </label>
+    <label>
+      Especificar colores:
+      <input formControlName="balloonColors" type="text" />
+    </label>
+
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, basicReceptionPrice)" />
+      Recepción básica ($800)
+    </label>
+
+    <label>
+      Muebles (Cajoneras en forma de mesas, 3 piezas):
+      <select formControlName="furnitureCustomization" (change)="onFurnitureChange($event)">
+        <option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }} pieza(s) - ${{ num * furniturePricePerPiece }}</option>
+      </select>
+    </label>
+
+    <!-- Iluminación -->
+    <h4>Iluminación</h4>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, tunnelLightsPrice)" />
+      Túnel de luces ($1800)
+    </label>
+    <label>
+      Personalizar tipo o colores de luces:
+      <select formControlName="lightCustomization">
+        <option *ngFor="let color of lightColors">{{ color }}</option>
+      </select>
+    </label>
+
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, ledCeilingPrice)" />
+      Techo con telas y luces LED ($1800)
+    </label>
+    <label>
+      Personalizar colores de luces o telas:
+      <select formControlName="ceilingCustomization">
+        <option *ngFor="let color of lightColors">{{ color }}</option>
+      </select>
+    </label>
+
+    <!-- Mesas y Decorado -->
+    <h4>Mesas y Decorado</h4>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, mainTableDecorationPrice)" />
+      Decoración para la mesa principal ($1800)
+    </label>
+
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, sweetTableDecorationNoCandyPrice)" />
+      Decoración para mesa de dulces (sin dulces) ($800)
+    </label>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, sweetTableDecorationWithCandyPrice)" />
+      Decoración para mesa de dulces (con dulces incluidos) ($3000)
+    </label>
+
+    <!-- Entretenimiento y Servicios Extra -->
+    <h4>Entretenimiento y Servicios Extra</h4>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, djPrice)" />
+      DJ para el evento ($1500)
+    </label>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, liveMusicPrice)" />
+      Música en vivo ($2500+)
+    </label>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, photoVideoPrice)" />
+      Fotografía y video ($2000)
+    </label>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, kidsAnimationPrice)" />
+      Animación para niños ($1000)
+    </label>
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, photoSetPrice)" />
+      Set para tomarse fotos ($700)
+    </label>
+
+    <!-- Agregar personajes temáticos -->
+    <h4>Personajes y Temáticas</h4>
+    <label *ngFor="let character of characters">
+      <input type="checkbox" [value]="character" (change)="onCharacterChange($event)" />
+      {{ character }} ($600)
+    </label>
+
+    <!-- Precio Total -->
+    <h3>Precio Total: ${{ totalPrice }}</h3>
+
+    <!-- Botón de Guardar -->
+    <button type="button" (click)="guardarFormulario()">Guardar</button>
+  </form>
+</div>

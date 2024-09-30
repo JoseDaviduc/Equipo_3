@@ -1,3 +1,15 @@
+.design-package-btn {
+  background-color: #ffcc00; /* Cambia el color de fondo */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 15px; /* Espaciado interno */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+}
+
+.design-package-btn:hover {
+  background-color: #e6b800; /* Cambia el color al pasar el mouse */
+}
+
 /* Estilos generales de la sección */
 .services-section {
   text-align: center;
