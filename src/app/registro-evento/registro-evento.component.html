@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuestionario para Agendar un Evento</title>
+    <!-- Aquí puedes agregar un enlace a tu archivo CSS -->
 </head>
 <body>
+    <header class="header">
+        <div class="navigation">
+            <div class="logo-container">
+                <div class="logo-icon" aria-label="Logo de la empresa"></div> <!-- Añadir accesibilidad con aria-label o un elemento alt -->
+                <span class="logo-text">DECORACIONES CASTILLO</span> <!-- Nombre de la empresa -->
+            </div>
+            <ul>
+                <li><a routerLink="/inicio">INICIO</a></li> <!-- Si es estático, cambiar a href="/inicio" -->
+                <li><a routerLink="/paquetes">PAQUETES</a></li> <!-- Si es estático, cambiar a href -->
+                <li><a routerLink="/contacto">UBICACIÓN</a></li> <!-- Si es estático, cambiar a href -->
+            </ul>
+        </div>
+    </header>
+
     <div class="form-container">
         <h1>Cuestionario para Agendar un Evento</h1>
 
@@ -50,7 +65,7 @@
 
                 <div class="form-group">
                     <label for="tipo_evento">Tipo de evento:</label>
-                    <select id="tipo_evento" name="tipo_evento">
+                    <select id="tipo_evento" name="tipo_evento" required> <!-- Añadí required para validar que seleccionen una opción -->
                         <option value="cumpleanos">Cumpleaños</option>
                         <option value="boda">Boda o quince años</option>
                         <option value="otro">Otro (especificar)</option>
@@ -58,7 +73,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit">Enviar</button>
+                    <button type="submit">Enviar</button> <!-- Añadir type="submit" explícitamente -->
                 </div>
             </div>
         </form>

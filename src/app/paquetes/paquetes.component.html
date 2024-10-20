@@ -1,4 +1,19 @@
 <!-- Otras secciones de tu página, incluyendo la sección de servicios -->
+<!-- Encabezado con Barra de Navegación -->
+<header class="header">
+  <div class="navigation">
+    <div class="logo-container">
+      <div class="logo-icon"></div> <!-- Aquí se mostrará el logo -->
+      <span class="logo-text">DECORACIONES CASTILLO</span> <!-- Nombre de la empresa -->
+    </div>
+    <ul>
+      <li><a routerLink="/inicio">INICIO</a></li>
+      <li><a routerLink="/historia">¿QUE HACEMOS?</a></li>
+      <li><a routerLink="/contacto">UBICACION</a></li>
+    </ul>
+  </div>
+</header>
+<!-- Sección de Servicios -->
 <div class="services-section">
   <h2 style="display: inline;">MANEJAMOS LOS SIGUIENTES PAQUETES</h2>
   <button class="design-package-btn" style="margin-left: 300px;" [routerLink]="['/crear-paquete']">Diseña tu paquete</button>
@@ -43,4 +58,3 @@
     </div>
   </div>
 </div>
-

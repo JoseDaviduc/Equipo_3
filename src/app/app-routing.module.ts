@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'paquetes', component: PaquetesComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'crear-paquete', component: CrearPaqueteComponent }, // Asegúrate de que esta ruta esté aquí
-  { path: 'registro-evento', component: RegistroEventoComponent }, // Ruta para el formulario de registro
+  { path: 'registro-evento', component: RegistroEventoComponent },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }, // Ruta para el formulario de registro
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
