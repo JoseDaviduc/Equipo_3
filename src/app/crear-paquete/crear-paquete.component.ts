@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-paquete',
@@ -9,46 +9,66 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CrearPaqueteComponent {
   eventForm: FormGroup;
   totalPrice: number = 0;
+  currentStep = 1;
 
-  // Precios para cada opción de los combo boxes y elementos
-  furniturePricePerPiece = 1500;
+  // Precios de los elementos de decoración y servicios adicionales
   balloonStripPrice = 300;
   basicReceptionPrice = 800;
+  furniturePricePerPiece = 200;  // Precio por pieza de mobiliario
   tunnelLightsPrice = 1800;
-  ledCeilingPrice = 1800;
+  ledCeilingPrice = 1800;  // Techo con luces LED y telas
   mainTableDecorationPrice = 1800;
-  sweetTableDecorationNoCandyPrice = 800;
-  sweetTableDecorationWithCandyPrice = 3000;
-  djPrice = 1500;
-  liveMusicPrice = 2500;
-  photoVideoPrice = 2000;
-  kidsAnimationPrice = 1000;
-  photoSetPrice = 700;
-  characterPrice = 600;
+  sweetTableDecorationNoCandyPrice = 800;  // Decoración para mesa de dulces (sin dulces)
+  sweetTableDecorationWithCandyPrice = 3000;  // Decoración para mesa de dulces (con dulces incluidos)
+  djPrice = 1500;  // DJ para el evento
+  liveMusicPrice = 2500;  // Música en vivo
+  photoVideoPrice = 2000;  // Fotografía y video
+  kidsAnimationPrice = 1000;  // Animación para niños
+  photoSetPrice = 700;  // Set para tomarse fotos
 
-  // Opción de colores y personajes
-  lightColors = ['Azul', 'Rojo', 'Dorado', 'Morado'];
-  characters = ['Peppa', 'Elsa de Frozen', 'Masha', 'Winnie Pooh', 'Pocoyo'];
+  // Colores de luces disponibles para la personalización
+  lightColors = ['Rojo', 'Morado', 'Dorado', 'Amarillo', 'Rosado'];
+
+  // Personajes disponibles para agregar temáticas
+  characters = ['Personaje A', 'Personaje B', 'Personaje C'];
 
   constructor(private fb: FormBuilder) {
     this.eventForm = this.fb.group({
-      clientName: [''],
-      clientPhone: [''],
-      clientEmail: [''],
-      eventDate: [''],
-      startTime: [''],
-      endTime: [''],
-      eventLocation: [''],
+      clientName: ['', Validators.required],
+      clientPhone: ['', Validators.required],
+      clientEmail: ['', [Validators.required, Validators.email]],
+      eventDate: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
+      eventLocation: ['', Validators.required],
+      guestCount: [''],
       balloonColors: [''],
-      furnitureCustomization: ['1'], // Default: 1 pieza
-      lightCustomization: ['Azul'],
-      ceilingCustomization: ['Azul'],
-      tableDecorationStyle: [''],
-      selectedCharacters: [[]], // Para personajes seleccionados
+      furnitureCustomization: [''],  // Personalización de muebles
+      tunnelLights: [false],  // Checkbox para túnel de luces
+      lightCustomization: [''],  // Personalización de luces
+      ledCeiling: [false],  // Checkbox para techo con luces LED
+      ceilingCustomization: ['']  // Personalización de colores del techo
     });
   }
 
-  // Método para manejar el checkbox y actualizar el precio total
+  // Cambiar entre pasos en el formulario
+  goToStep(step: number) {
+    this.currentStep = step;
+  }
+
+  nextStep() {
+    if (this.currentStep < 5) {
+      this.currentStep++;
+    }
+  }
+
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
+  }
+
+  // Manejar los cambios en los checkbox para calcular el precio
   onCheckboxChange(event: any, price: number) {
     if (event.target.checked) {
       this.totalPrice += price;
@@ -57,38 +77,23 @@ export class CrearPaqueteComponent {
     }
   }
 
-  // Método para manejar el cambio de selección de muebles
+  // Manejar los cambios en la personalización de muebles
   onFurnitureChange(event: any) {
-    const quantity = +event.target.value;
-    this.totalPrice += quantity * this.furniturePricePerPiece;
+    const selectedPieces = event.target.value;
+    this.totalPrice += (selectedPieces * this.furniturePricePerPiece);
   }
 
-  // Método para manejar los personajes temáticos seleccionados
+  // Manejar los cambios de selección de personajes temáticos
   onCharacterChange(event: any) {
-    const selectedCharacters = this.eventForm.get('selectedCharacters')!.value;
-    const isChecked = event.target.checked;
-    const character = event.target.value;
-
-    if (isChecked) {
-      this.totalPrice += this.characterPrice;
-      selectedCharacters.push(character);
-    } else {
-      this.totalPrice -= this.characterPrice;
-      const index = selectedCharacters.indexOf(character);
-      if (index > -1) {
-        selectedCharacters.splice(index, 1);
-      }
-    }
+    const selectedCharacter = event.target.value;
+    console.log('Personaje seleccionado:', selectedCharacter);
+    // Aquí puedes agregar cualquier lógica adicional para manejar los personajes seleccionados
   }
 
-  // Método para guardar los datos del formulario
+  // Guardar el formulario
   guardarFormulario() {
-    if (this.eventForm.valid) {
-      console.log('Formulario guardado:', this.eventForm.value);
-      alert(`Formulario guardado exitosamente!\nTotal: $${this.totalPrice}`);
-    } else {
-      alert('Por favor, completa todos los campos requeridos antes de guardar.');
-    }
+    console.log('Formulario enviado:', this.eventForm.value);
+    console.log('Precio total:', this.totalPrice);
+    // Aquí podrías enviar los datos al servidor o procesarlos como necesites
   }
 }
-
