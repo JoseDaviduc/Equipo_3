@@ -1,23 +1,26 @@
+// admin.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin.component';
-import { CrearPaqueteComponent } from './crear-paquete/crear-paquete.component';
-import { RegistroEventoComponent } from './registro-evento/registro-evento.component';
-import { EventosComponent } from './eventos/eventos.component';
-
+import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { EventRegistrationComponent } from './event-registration/event-registration.component';
+import { PackageManagementComponent } from './package-management/package-management.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AdminComponent,
-    CrearPaqueteComponent,
-    RegistroEventoComponent,
-    EventosComponent
+    AdminDashboardComponent,
+    EventRegistrationComponent,
+    PackageManagementComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
-  ]
+    FormsModule, // Añade FormsModule en los imports
+    RouterModule.forChild([
+      { path: 'admin', component: AdminDashboardComponent },
+      { path: 'admin/events', component: EventRegistrationComponent },
+      { path: 'admin/packages', component: PackageManagementComponent },
+    ]),
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}
