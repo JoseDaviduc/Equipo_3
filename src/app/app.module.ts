@@ -12,6 +12,7 @@ import { PaquetesComponent } from './paquetes/paquetes.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { RegistroEventoComponent } from './registro-evento/registro-evento.component';
 import { CrearPaqueteComponent } from './crear-paquete/crear-paquete.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CrearPaqueteComponent } from './crear-paquete/crear-paquete.component';
     ContactoComponent,
     RegistroEventoComponent,
     CrearPaqueteComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

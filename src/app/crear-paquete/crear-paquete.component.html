@@ -11,44 +11,55 @@
     </ul>
   </div>
 </header>
+<br> 
 <div class="form-container">
-  <form [formGroup]="eventForm">
-    <h3>Información del Cliente</h3>
+  <!-- Pestañas de los pasos -->
+  <div class="step-tabs">
+    <button (click)="goToStep(1)">Paso 1: Datos del Cliente y Evento</button>
+    <button (click)="goToStep(2)">Paso 2: Decoración</button>
+    <button (click)="goToStep(3)">Paso 3: Mobiliario e Iluminación</button>
+    <button (click)="goToStep(4)">Paso 4: Entretenimiento y Servicios Extra</button>
+    <button (click)="goToStep(5)">Paso 5: Confirmación</button>
+  </div>
+
+  <!-- Paso 1: Información del Cliente y Evento -->
+  <div *ngIf="currentStep === 1">
+    <h3>Información del Cliente y Evento</h3>
     <label>
       Nombre completo:
-      <input formControlName="clientName" type="text" />
-    </label>
-    <label>
-      Teléfono de contacto:
-      <input formControlName="clientPhone" type="text" />
+      <input formControlName="clientName" type="text" required />
     </label>
     <label>
       Correo electrónico:
-      <input formControlName="clientEmail" type="email" />
+      <input formControlName="clientEmail" type="email" required />
     </label>
-
-    <h3>Información del Evento</h3>
+    <label>
+      Teléfono de contacto:
+      <input formControlName="clientPhone" type="text" required />
+    </label>
     <label>
       Fecha del evento:
-      <input formControlName="eventDate" type="date" />
+      <input formControlName="eventDate" type="date" required />
     </label>
     <label>
       Hora de inicio:
-      <input formControlName="startTime" type="time" />
+      <input formControlName="startTime" type="time" required />
     </label>
     <label>
       Hora de finalización:
-      <input formControlName="endTime" type="time" />
+      <input formControlName="endTime" type="time" required />
     </label>
     <label>
       Dirección del lugar del evento:
-      <input formControlName="eventLocation" type="text" />
+      <input formControlName="eventLocation" type="text" required />
     </label>
 
-    <h3>Selecciona los Elementos para Crear tu Paquete</h3>
+    <button (click)="nextStep()">Siguiente</button>
+  </div>
 
-    <!-- Decoración -->
-    <h4>Decoración</h4>
+  <!-- Paso 2: Decoración -->
+  <div *ngIf="currentStep === 2">
+    <h3>Personalización de Decoración</h3>
     <label>
       <input type="checkbox" (change)="onCheckboxChange($event, balloonStripPrice)" />
       Tira de Globos ($300)
@@ -59,25 +70,42 @@
     </label>
 
     <label>
-      <input type="checkbox" (change)="onCheckboxChange($event, basicReceptionPrice)" />
-      Recepción básica ($800)
+      <input type="checkbox" (change)="onCheckboxChange($event, mainTableDecorationPrice)" />
+      Decoración para la mesa principal ($1800)
     </label>
 
     <label>
-      Muebles (Cajoneras en forma de mesas, 3 piezas):
+      <input type="checkbox" (change)="onCheckboxChange($event, sweetTableDecorationNoCandyPrice)" />
+      Decoración para mesa de dulces (sin dulces) ($800)
+    </label>
+
+    <label>
+      <input type="checkbox" (change)="onCheckboxChange($event, sweetTableDecorationWithCandyPrice)" />
+      Decoración para mesa de dulces (con dulces incluidos) ($3000)
+    </label>
+
+    <button (click)="previousStep()">Anterior</button>
+    <button (click)="nextStep()">Siguiente</button>
+  </div>
+
+  <!-- Paso 3: Mobiliario e Iluminación -->
+  <div *ngIf="currentStep === 3">
+    <h3>Mobiliario e Iluminación</h3>
+
+    <label>
+      Muebles (Cajoneras en forma de mesas, 1 paquete = 3 muebles):
       <select formControlName="furnitureCustomization" (change)="onFurnitureChange($event)">
-        <option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }} pieza(s) - ${{ num * furniturePricePerPiece }}</option>
+        <option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }} paquete(s) - ${{ num * furniturePricePerPiece }}</option>
       </select>
     </label>
 
-    <!-- Iluminación -->
-    <h4>Iluminación</h4>
     <label>
       <input type="checkbox" (change)="onCheckboxChange($event, tunnelLightsPrice)" />
       Túnel de luces ($1800)
     </label>
+
     <label>
-      Personalizar tipo o colores de luces:
+      Personalizar colores de luces:
       <select formControlName="lightCustomization">
         <option *ngFor="let color of lightColors">{{ color }}</option>
       </select>
@@ -94,31 +122,21 @@
       </select>
     </label>
 
-    <!-- Mesas y Decorado -->
-    <h4>Mesas y Decorado</h4>
-    <label>
-      <input type="checkbox" (change)="onCheckboxChange($event, mainTableDecorationPrice)" />
-      Decoración para la mesa principal ($1800)
-    </label>
+    <button (click)="previousStep()">Anterior</button>
+    <button (click)="nextStep()">Siguiente</button>
+  </div>
 
-    <label>
-      <input type="checkbox" (change)="onCheckboxChange($event, sweetTableDecorationNoCandyPrice)" />
-      Decoración para mesa de dulces (sin dulces) ($800)
-    </label>
-    <label>
-      <input type="checkbox" (change)="onCheckboxChange($event, sweetTableDecorationWithCandyPrice)" />
-      Decoración para mesa de dulces (con dulces incluidos) ($3000)
-    </label>
+  <!-- Paso 4: Entretenimiento y Servicios Extra -->
+  <div *ngIf="currentStep === 4">
+    <h3>Entretenimiento y Servicios Extra</h3>
 
-    <!-- Entretenimiento y Servicios Extra -->
-    <h4>Entretenimiento y Servicios Extra</h4>
     <label>
       <input type="checkbox" (change)="onCheckboxChange($event, djPrice)" />
       DJ para el evento ($1500)
     </label>
     <label>
       <input type="checkbox" (change)="onCheckboxChange($event, liveMusicPrice)" />
-      Música en vivo ($2500+)
+      Música en vivo ($2500)
     </label>
     <label>
       <input type="checkbox" (change)="onCheckboxChange($event, photoVideoPrice)" />
@@ -133,17 +151,29 @@
       Set para tomarse fotos ($700)
     </label>
 
-    <!-- Agregar personajes temáticos -->
-    <h4>Personajes y Temáticas</h4>
     <label *ngFor="let character of characters">
       <input type="checkbox" [value]="character" (change)="onCharacterChange($event)" />
       {{ character }} ($600)
     </label>
 
-    <!-- Precio Total -->
-    <h3>Precio Total: ${{ totalPrice }}</h3>
+    <button (click)="previousStep()">Anterior</button>
+    <button (click)="nextStep()">Siguiente</button>
+  </div>
 
-    <!-- Botón de Guardar -->
-    <button type="button" (click)="guardarFormulario()">Guardar</button>
-  </form>
+  <!-- Paso 5: Confirmación -->
+  <div *ngIf="currentStep === 5">
+    <h3>Confirmación</h3>
+    <p>Por favor, revisa los detalles seleccionados antes de enviar:</p>
+    <ul>
+      <li>Nombre: {{ eventForm.value.clientName }}</li>
+      <li>Teléfono: {{ eventForm.value.clientPhone }}</li>
+      <li>Correo: {{ eventForm.value.clientEmail }}</li>
+      <li>Fecha del Evento: {{ eventForm.value.eventDate }}</li>
+      <li>Total a pagar: ${{ totalPrice }}</li>
+    </ul>
+    <button (click)="previousStep()">Anterior</button>
+    <button type="button" (click)="guardarFormulario()">Confirmar y Guardar</button>
+  </div>
 </div>
+<br>
+<br>
