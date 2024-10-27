@@ -1,8 +1,63 @@
-<h2>Gestión de Paquetes</h2>
-<div *ngFor="let package of packages">
-  <p>
-    {{ package.name }} - ${{ package.price }}
-    <input type="number" placeholder="Nuevo precio">
-    <button (click)="updatePrice(package)">Actualizar Precio</button>
-  </p>
+<div class="admin-dashboard">
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="https://via.placeholder.com/80" alt="Profile">
+      <span>Andrew Bennet</span>
+    </div>
+    <ul class="menu">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Calendar</a></li>
+      <li><a href="#">Inbox</a></li>
+      <li><a href="#">Tasks</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Global Settings</a></li>
+    </ul>
+  </aside>
+  <div class="main-content">
+    <header class="header">
+      <h1>DASHBOARD</h1>
+      <input type="text" placeholder="Search...">
+    </header>
+    <div class="content">
+      <div class="widget">
+        <h2>$1250</h2>
+        <div class="chart-placeholder">[Chart]</div>
+      </div>
+      <div class="calendar-placeholder">
+        <h3>October 2024</h3>
+        <div class="calendar">[Calendar]</div>
+      </div>
+      <div class="recent-orders">
+        <h3>Recent Orders</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12345</td>
+              <td>2024-10-01</td>
+              <td>Completed</td>
+              <td>$150</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="recent-comments">
+        <h3>Recent Comments</h3>
+        <div class="comment">Comment 1 content...</div>
+        <div class="comment">Comment 2 content...</div>
+      </div>
+      <div class="contacts">
+        <h3>Contacts</h3>
+        <div class="contact">Name of Contact 1</div>
+        <div class="contact">Name of Contact 2</div>
+      </div>
+    </div>
+  </div>
 </div>

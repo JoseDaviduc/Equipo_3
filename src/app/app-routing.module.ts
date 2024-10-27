@@ -11,6 +11,7 @@ import { PackageManagementComponent } from './admin/package-management/package-m
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
+  { path: 'inicio', component: InicioComponent }, // Ruta para 'inicio'
   { path: 'historia', component: HistoriaComponent },
   { path: 'paquetes', component: PaquetesComponent },
   { path: 'contacto', component: ContactoComponent },
