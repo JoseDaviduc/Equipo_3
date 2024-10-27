@@ -7,7 +7,7 @@ import { PaquetesComponent } from './paquetes/paquetes.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { RegistroEventoComponent } from './registro-evento/registro-evento.component';
 import { CrearPaqueteComponent } from './crear-paquete/crear-paquete.component';
-import { PackageManagementComponent } from './admin/package-management/package-management.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'registro-evento', component: RegistroEventoComponent },
   { path: 'crear-paquete', component: CrearPaqueteComponent },
-  { path: 'admin', component: PackageManagementComponent }, // Ruta para la vista de administrador
+  {path: 'admin', component: AdminDashboardComponent}
   // Agrega más rutas según sea necesario
 ];
 
