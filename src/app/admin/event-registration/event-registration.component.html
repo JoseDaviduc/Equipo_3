@@ -1,1 +1,53 @@
-<p>event-registration works!</p>
+<div class="admin-dashboard">
+    <aside class="sidebar">
+        <div class="profile">
+            <img src="https://via.placeholder.com/80" alt="Profile">
+            <span>Andrew Bennet</span>
+        </div>
+        <ul class="menu">
+            <li><a routerLink="/admin">panel principal</a></li>
+            <li><a href="#">Calendario de Eventos</a></li>
+            <li><a href="#">Opción 3</a></li>
+            <li><a href="#">Opción 4</a></li>
+            <li><a href="#">Opción 5</a></li>
+            <li><a href="#">Opción 6</a></li>
+        </ul>
+    </aside>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono de Contacto</th>
+                    <th>Correo Electrónico</th>
+                    <th>Fecha de Evento</th>
+                    <th>Hora de Inicio</th>
+                    <th>Hora de Finalización</th>
+                    <th>Dirección del Lugar</th>
+                    <th>Tipo de Evento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events">
+                    <td>{{ event.id }}</td>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.contactPhone }}</td>
+                    <td>{{ event.email }}</td>
+                    <td>{{ event.eventDate }}</td>
+                    <td>{{ event.startTime }}</td>
+                    <td>{{ event.endTime }}</td>
+                    <td>{{ event.location }}</td>
+                    <td>{{ event.eventType }}</td>
+                    <td>
+                        <button (click)="viewEvent(event)">Ver</button>
+                        <button (click)="editEvent(event)">Editar</button>
+                        <button (click)="deleteEvent(event)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -13,7 +13,12 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { RegistroEventoComponent } from './registro-evento/registro-evento.component';
 import { CrearPaqueteComponent } from './crear-paquete/crear-paquete.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { EventoService } from './evento.service';
+import { EventRegistrationComponent } from './admin/event-registration/event-registration.component';
+// Importaciones del módulo Admin no son necesarias aquí
+// import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+// import { EventRegistrationComponent } from './admin/event-registration/event-registration.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,13 @@ import { FooterComponent } from './footer/footer.component';
     RegistroEventoComponent,
     CrearPaqueteComponent,
     FooterComponent,
+    AdminDashboardComponent,
+    
+    
+
+    // Elimina las siguientes líneas
+    // AdminDashboardComponent,
+    // EventRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +44,10 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule, // Añadido para [(ngModel)]
     ReactiveFormsModule,
     HttpClientModule, // Importa HttpClientModule para las solicitudes HTTP
+
   ],
-  providers: [],
+  providers: [EventoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
