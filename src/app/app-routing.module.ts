@@ -8,6 +8,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { RegistroEventoComponent } from './registro-evento/registro-evento.component';
 import { CrearPaqueteComponent } from './crear-paquete/crear-paquete.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { EventRegistrationComponent } from './admin/event-registration/event-registration.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent },
   { path: 'registro-evento', component: RegistroEventoComponent },
   { path: 'crear-paquete', component: CrearPaqueteComponent },
-  {path: 'admin', component: AdminDashboardComponent}
+  { path: 'admin', component: AdminDashboardComponent }, // Añadir una coma aquí
+  { path: 'admin/events', component: EventRegistrationComponent }
   // Agrega más rutas según sea necesario
 ];
 
