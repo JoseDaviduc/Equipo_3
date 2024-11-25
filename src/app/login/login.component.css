@@ -1,18 +1,88 @@
+/* Contenedor principal */
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* Fondo degradado en tonos pastel */
+  background: linear-gradient(135deg, #fce4ec, #d1c4e9); /* De rosa pastel a lila pastel */
+  padding: 20px;
+  color: #ffffff; /* Texto claro para contraste */
+}
+
+/* Caja de login */
+.login-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Título del formulario */
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* Grupos de formularios */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Etiquetas */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555555;
+}
+
+/* Campos de entrada */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #80cbc4;
+  box-shadow: 0 0 5px rgba(128, 203, 196, 0.5); /* Verde pastel */
+}
+
+/* Botón de envío */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #80cbc4; /* Verde pastel */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #4db6ac; /* Verde pastel un poco más oscuro */
+}
+
+/* Ajustes para dispositivos pequeños */
+@media (max-width: 768px) {
+  .login-box {
     padding: 20px;
-    border: 1px solid #f800d7;
-    border-radius: 8px;
-    background-color: #00f8a5;
   }
-  
-  .form-group {
-    margin-bottom: 15px;
+
+  .btn-primary {
+    font-size: 0.9rem;
   }
-  
-  .error {
-    color: red;
-    font-size: 12px;
-  }
-  
+}

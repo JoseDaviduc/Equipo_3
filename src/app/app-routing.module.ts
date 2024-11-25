@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'crear-paquete', component: CrearPaqueteComponent },
   { path: 'admin', component: AdminDashboardComponent }, // Añadir una coma aquí
   { path: 'admin/events', component: EventRegistrationComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },  // Redirigir al login al cargar la página
+  { path: '', component: InicioComponent },
   { path: 'login', component: LoginComponent },         // Ruta para el login
   { path: '', redirectTo: '/login', pathMatch: 'full' }
   // Agrega más rutas según sea necesario
