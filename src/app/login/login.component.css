@@ -3,86 +3,157 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  /* Fondo degradado en tonos pastel */
-  background: linear-gradient(135deg, #fce4ec, #d1c4e9); /* De rosa pastel a lila pastel */
-  padding: 20px;
-  color: #ffffff; /* Texto claro para contraste */
+  height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
 /* Caja de login */
 .login-box {
-  background-color: #ffffff;
+  width: 400px;
   padding: 30px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
   text-align: center;
 }
 
-/* Título del formulario */
-.login-box h2 {
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  color: #333333;
-  font-weight: bold;
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
-/* Grupos de formularios */
+p {
+  margin-bottom: 20px;
+  color: #6c757d;
+}
+
+.register-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilo del formulario */
 .form-group {
   margin-bottom: 15px;
-  text-align: left;
 }
 
-/* Etiquetas */
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555555;
-}
-
-/* Campos de entrada */
-.form-control {
+.form-input {
   width: 100%;
   padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 14px;
+}
+
+.form-input:focus {
   outline: none;
-  transition: all 0.3s ease;
+  border-color: #007bff;
 }
 
-.form-control:focus {
-  border-color: #80cbc4;
-  box-shadow: 0 0 5px rgba(128, 203, 196, 0.5); /* Verde pastel */
+/* Checkbox */
+.form-check {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 20px;
 }
 
-/* Botón de envío */
+.form-check-input {
+  margin-right: 10px;
+}
+
+.form-check-label {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Botón de login */
 .btn-primary {
   width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  background-color: #80cbc4; /* Verde pastel */
-  color: #ffffff;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+}
+
+.btn-primary:disabled {
+  background-color: #bbb;
 }
 
 .btn-primary:hover {
-  background-color: #4db6ac; /* Verde pastel un poco más oscuro */
+  background-color: #0056b3;
 }
 
-/* Ajustes para dispositivos pequeños */
-@media (max-width: 768px) {
-  .login-box {
-    padding: 20px;
-  }
+/* Enlace de contraseña */
+.forgot-password {
+  margin-top: 15px;
+}
 
-  .btn-primary {
-    font-size: 0.9rem;
-  }
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Social Login */
+.social-login {
+  margin-top: 20px;
+}
+
+.social-login p {
+  margin-bottom: 10px;
+  color: #6c757d;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-buttons .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.social-buttons .btn.google {
+  background-color: #db4437;
+}
+
+.social-buttons .btn.google:hover {
+  background-color: #c33d2f;
+}
+
+.social-buttons .btn.twitter {
+  background-color: #1da1f2;
+}
+
+.social-buttons .btn.twitter:hover {
+  background-color: #0d95e8;
+}
+
+.social-buttons .btn.facebook {
+  background-color: #3b5998;
+}
+
+.social-buttons .btn.facebook:hover {
+  background-color: #2d4373;
 }
