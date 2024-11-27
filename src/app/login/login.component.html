@@ -1,7 +1,12 @@
 <div class="login-container">
   <div class="login-box">
-    <h2>Sign in to continue</h2>
-    <p>Not a member yet? <a href="#" class="register-link">Register now</a></p>
+    <!-- Encabezado con texto en extremos -->
+    <div class="header">
+      <h2 class="left-header">Sign in to continue</h2>
+      <p class="right-header">
+        Not a member yet? <a href="#" class="register-link">Register now</a>
+      </p>
+    </div>
 
     <!-- Login Form -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
