@@ -2,27 +2,26 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
-export class AppComponent {
+export class LoginComponent {
   loginForm: FormGroup;
 
-  
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      keepLoggedIn: [false],
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Formulario enviado:', this.loginForm.value);
-      // Aquí puedes llamar a un servicio para autenticar al usuario
-    } else {
-      console.error('Formulario no válido');
+      const { email, password, keepLoggedIn } = this.loginForm.value;
+      console.log('Email:', email, 'Password:', password, 'Keep me logged in:', keepLoggedIn);
+      // Aquí puedes agregar la lógica de autenticación
     }
   }
 }

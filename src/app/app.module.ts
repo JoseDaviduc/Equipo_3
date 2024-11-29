@@ -16,6 +16,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { EventoService } from './evento.service';
 import { EventRegistrationComponent } from './admin/event-registration/event-registration.component';
+import { LoginComponent } from './login/login.component';
+import { Injectable } from '@angular/core';
 // Importaciones del módulo Admin no son necesarias aquí
 // import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 // import { EventRegistrationComponent } from './admin/event-registration/event-registration.component';
@@ -31,6 +33,7 @@ import { EventRegistrationComponent } from './admin/event-registration/event-reg
     CrearPaqueteComponent,
     FooterComponent,
     AdminDashboardComponent,
+    LoginComponent,
     
     
 
@@ -48,6 +51,8 @@ import { EventRegistrationComponent } from './admin/event-registration/event-reg
   ],
   providers: [EventoService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
-
+export class AuthService {
+}

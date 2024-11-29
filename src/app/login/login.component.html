@@ -1,0 +1,67 @@
+<div class="login-container">
+  <div class="login-box">
+    <!-- Encabezado con texto en extremos -->
+    <div class="header">
+      <h2 class="left-header">Sign in to continue</h2>
+      <p class="right-header">
+        Not a member yet? <a href="#" class="register-link">Register now</a>
+      </p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email Field -->
+      <div class="form-group">
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          class="form-input"
+          placeholder="Email or Username"
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <input
+          id="password"
+          formControlName="password"
+          type="password"
+          class="form-input"
+          placeholder="Password"
+        />
+      </div>
+
+      <!-- Keep Me Logged In -->
+      <div class="form-check">
+        <input
+          formControlName="keepLoggedIn"
+          type="checkbox"
+          class="form-check-input"
+          id="keepLoggedIn"
+        />
+        <label class="form-check-label" for="keepLoggedIn">Keep me logged in</label>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">
+        LOGIN NOW
+      </button>
+    </form>
+
+    <!-- Forgot Password -->
+    <div class="forgot-password">
+      <a href="#">Forgot your password?</a>
+    </div>
+
+    <!-- Social Login -->
+    <div class="social-login">
+      <p>Or sign in with</p>
+      <div class="social-buttons">
+        <button class="btn google"><i class="fab fa-google"></i> Google</button>
+        <button class="btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+        <button class="btn facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>
