@@ -6,12 +6,14 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { EventRegistrationComponent } from './event-registration/event-registration.component';
 import { PackageManagementComponent } from './package-management/package-management.component';
 import { RouterModule } from '@angular/router';
+import { PriceManagementComponent } from './price-management/price-management.component';
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
     EventRegistrationComponent,
     PackageManagementComponent,
+    PriceManagementComponent,
   ],
   imports: [
     CommonModule,
