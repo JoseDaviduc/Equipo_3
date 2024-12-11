@@ -42,6 +42,14 @@ export class CrearPaqueteComponent {
     { name: 'Mampara Circular Grande', price: 900, selected: false },
   ];
 
+  selectedMamparaCuadrada: DecorOption | null = null;
+  selectedMamparaCircular: DecorOption | null = null;
+
+  isOptionDisabled(option: DecorOption): boolean {
+    const selectedCount = this.decorOptions1.filter(opt => opt.selected).length;
+    return selectedCount >= 2 && !option.selected;
+  }
+
   calculateTotal(): number {
     let total = 0;
 
@@ -49,13 +57,8 @@ export class CrearPaqueteComponent {
       if (option.selected) total += option.price;
     });
 
-    this.decorOptions2.forEach(option => {
-      if (option.selected) total += option.price;
-    });
-
-    this.decorOptions3.forEach(option => {
-      if (option.selected) total += option.price;
-    });
+    if (this.selectedMamparaCuadrada) total += this.selectedMamparaCuadrada.price;
+    if (this.selectedMamparaCircular) total += this.selectedMamparaCircular.price;
 
     if (this.formData.tunnel) total += 1800;
     if (this.formData.tela === 'luces') total += 1800;

@@ -1,5 +1,5 @@
 .form-container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -7,7 +7,7 @@
   background-color: #f9f9f9;
 }
 
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
 }
 
@@ -16,12 +16,21 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 10px;
 }
 
 button {
