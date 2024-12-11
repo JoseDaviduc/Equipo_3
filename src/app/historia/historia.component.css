@@ -54,14 +54,14 @@
 /* Estilos para los enlaces */
 .navigation ul li a {
   text-decoration: none;
-  color: #1e0381; /* Color de los enlaces */
+  color: #ffffff; /* Color de los enlaces */
   font-size: 18px;
   transition: color 0.3s;
 }
 
 /* Efecto hover en los enlaces */
 .navigation ul li a:hover {
-  color: #f39c12; /* Color al pasar el cursor */
+  color: #fffb01; /* Color al pasar el cursor */
 }
 /* Estilos generales */
 body {

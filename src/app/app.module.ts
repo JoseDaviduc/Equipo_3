@@ -2,8 +2,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Importaciones necesarias
+import { FormsModule } from '@angular/forms';  // Importaciones necesarias
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -47,6 +49,7 @@ import { Injectable } from '@angular/core';
     FormsModule, // Añadido para [(ngModel)]
     ReactiveFormsModule,
     HttpClientModule, // Importa HttpClientModule para las solicitudes HTTP
+    CommonModule 
 
   ],
   providers: [EventoService],

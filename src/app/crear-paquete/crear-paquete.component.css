@@ -1,193 +1,39 @@
-/* Estilos para el encabezado */
-.header {
-  background-color: #050505; /* Fondo oscuro */
-  padding: 5px 0; /* Espaciado vertical */
-  text-align: center; /* Centrar contenido */
-}
-/* Estilos para la navegación */
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px; /* Ancho máximo para centrar */
-  margin: 0 auto; /* Centrar horizontalmente */
-  padding: 0 20px; /* Espaciado interno */
-}
-/* Estilos para el contenedor del logo */
-.logo-container {
-  display: flex; /* Usar flexbox para alinear logo y texto */
-  align-items: center; /* Alinear verticalmente */
-}
-
-/* Estilos para el logo */
-.logo-icon {
-  background-image: url('src/assets/logo.png'); /* Ruta a tu imagen */
-  background-size: contain; /* Ajusta el tamaño de la imagen */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  width: 50px; /* Ajusta el ancho de acuerdo a tus necesidades */
-  height: 50px; /* Ajusta la altura de acuerdo a tus necesidades */
-  margin-right: 10px; /* Espaciado entre la imagen y el texto */
-}
-
-/* Estilos para el texto del logo */
-.logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffffff; /* Color del texto del logo */
-}
-
-/* Estilos para la lista de navegación */
-.navigation ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Estilos para los elementos de la lista */
-.navigation ul li {
-  margin: 0 15px; /* Espaciado entre elementos */
-}
-
-/* Estilos para los enlaces */
-.navigation ul li a {
-  text-decoration: none;
-  color: #04f5fd; /* Color de los enlaces */
-  font-size: 18px;
-  transition: color 0.3s;
-}
-
-/* Efecto hover en los enlaces */
-.navigation ul li a:hover {
-  color: #f39c12; /* Color al pasar el cursor */
-}
-/* Estilo para el fondo de la página */
-body {
-  background-color: #e9ecef; /* Cambia el color del fondo aquí */
-}
-
-/* Estilos generales del contenedor del formulario */
 .form-container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   background-color: #f9f9f9;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para los encabezados */
-h3 {
-  color: #333;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
+h1, h2 {
   text-align: center;
 }
 
-h4 {
-  color: #555;
-  margin-bottom: 10px;
-  font-size: 1.25rem;
-}
-
-/* Estilos para las etiquetas y campos de entrada */
 label {
   display: block;
-  font-size: 1rem;
-  color: #555;
   margin-bottom: 5px;
-  font-weight: 500;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="time"],
-input[type="number"],
-select {
+input {
   width: 100%;
-  padding: 8px 12px;
-  margin-bottom: 20px;
+  padding: 8px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  box-sizing: border-box;
+  border-radius: 4px;
 }
 
-/* Estilo para los botones */
 button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #ff00aa;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #0056b3;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Estilo para los botones "Anterior" y "Siguiente" */
-button[type="button"] {
-  margin-right: 10px;
-}
-
-.step-tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.step-tabs button {
-  background-color: #ff00aa;
-  color: white;
-  padding: 15px 5px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.step-tabs button:hover {
-  background-color: #04f5fd;
-}
-
-/* Estilo para mostrar el precio total */
-h3.total-price {
-  color: #ff5722;
-  font-size: 1.5rem;
-  margin-top: 20px;
-  text-align: center;
-}
-
-/* Estilos para el resumen de confirmación */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-/* Responsive: Mejora el diseño en pantallas pequeñas */
-@media (max-width: 600px) {
-  .form-container {
-    padding: 15px;
-  }
-
-  button {
-    width: 100%;
-    margin-bottom: 10px;
-  }
 }

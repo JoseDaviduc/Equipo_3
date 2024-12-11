@@ -54,7 +54,7 @@
 /* Estilos para los enlaces */
 .navigation ul li a {
   text-decoration: none;
-  color: #cf5a2c; /* Color de los enlaces */
+  color: #ffffff; /* Color de los enlaces */
   font-size: 18px;
   transition: color 0.3s;
 }
