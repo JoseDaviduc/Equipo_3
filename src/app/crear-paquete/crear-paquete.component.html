@@ -25,16 +25,27 @@
     <label for="time">Hora del Evento:</label>
     <input type="time" id="time" name="time" [(ngModel)]="formData.time" required />
 
-    <label for="duration">Duración (horas):</label>
+    <label for="duration">Duración evento (horas):</label>
     <input type="number" id="duration" name="duration" [(ngModel)]="formData.duration" required min="1" />
 
+    <label for="location">Ubicación del Evento:</label>
+    <textarea
+      id="location"
+      name="location"
+      [(ngModel)]="formData.location"
+      placeholder="Escribe aquí la dirección o detalles de la ubicación del evento"
+      rows="3"
+      required
+    ></textarea>
+
     <h2>Opciones de Decoración</h2>
-    <h3>Selecciona hasta 2 opciones</h3>
+    <h3>Decoracion Principal</h3>
     <div *ngFor="let option of decorOptions1">
       <input
-        type="checkbox"
-        [(ngModel)]="option.selected"
-        [disabled]="isOptionDisabled(option)"
+      type="radio"
+      name="decoracionPrincipal"
+      [(ngModel)]="selectedDecoracionPrincipal"
+      [value]="option"
       />
       {{ option.name }} ({{ option.price | currency }})
     </div>
@@ -91,7 +102,7 @@
       <input type="radio" name="tela" [(ngModel)]="formData.tela" [value]="'luces'" /> Con luces ($1800)
       <input type="radio" name="tela" [(ngModel)]="formData.tela" [value]="'sinLuces'" /> Sin luces ($1300)
     </div>
-    <label for="numColors">Número de colores (máximo 3):</label>
+    <label for="numColors">Número de colores de las telas (máximo 3):</label>
     <input type="number" id="numColors" name="numColors" [(ngModel)]="formData.numColors" min="1" max="3" />
     <label for="colorDetails">Especifica los colores de las telas:</label>
     <input type="text" id="colorDetails" name="colorDetails" [(ngModel)]="formData.colorDetails" />
@@ -106,3 +117,5 @@
     <button type="submit">Enviar</button>
   </form>
 </div>
+<br> 
+<br> 

@@ -17,6 +17,7 @@ export class CrearPaqueteComponent {
     date: '',
     time: '',
     duration: 1,
+    location: '',
     tunnel: false,
     tela: '',
     numColors: 1,
@@ -47,6 +48,7 @@ export class CrearPaqueteComponent {
     { name: 'Mampara Circular Grande', price: 900, selected: false },
   ];
 
+  selectedDecoracionPrincipal: DecorOption | null = null;
   selectedMamparaCuadrada: DecorOption | null = null;
   selectedMamparaCircular: DecorOption | null = null;
 
@@ -62,6 +64,7 @@ export class CrearPaqueteComponent {
       if (option.selected) total += option.price;
     });
 
+    if (this.selectedDecoracionPrincipal) total += this.selectedDecoracionPrincipal.price;
     if (this.selectedMamparaCuadrada) total += this.selectedMamparaCuadrada.price;
     if (this.selectedMamparaCircular) total += this.selectedMamparaCircular.price;
 
