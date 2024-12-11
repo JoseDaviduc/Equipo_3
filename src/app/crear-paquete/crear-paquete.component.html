@@ -66,18 +66,37 @@
       <input type="radio" name="tunnel" [(ngModel)]="formData.tunnel" [value]="true" /> Sí ($1800)
       <input type="radio" name="tunnel" [(ngModel)]="formData.tunnel" [value]="false" /> No
     </div>
+    <div *ngIf="formData.tunnel">
+      <h4>Selecciona los colores (Amarillo y/o Blanco):</h4>
+      <div>
+        <input
+          type="checkbox"
+          id="colorAmarillo"
+          [(ngModel)]="tunnelColors.amber"
+        />
+        <label for="colorAmarillo">Amarillo</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          id="colorBlanco"
+          [(ngModel)]="tunnelColors.white"
+        />
+        <label for="colorBlanco">Blanco</label>
+      </div>
+    </div>
 
-    <h3>Telas</h3>
+    <h3>Telas de decoracion</h3>
     <div>
       <input type="radio" name="tela" [(ngModel)]="formData.tela" [value]="'luces'" /> Con luces ($1800)
       <input type="radio" name="tela" [(ngModel)]="formData.tela" [value]="'sinLuces'" /> Sin luces ($1300)
     </div>
     <label for="numColors">Número de colores (máximo 3):</label>
     <input type="number" id="numColors" name="numColors" [(ngModel)]="formData.numColors" min="1" max="3" />
-    <label for="colorDetails">Especifica los colores de la tela:</label>
+    <label for="colorDetails">Especifica los colores de las telas:</label>
     <input type="text" id="colorDetails" name="colorDetails" [(ngModel)]="formData.colorDetails" />
 
-    <h3>Sillones para XV años o boda</h3>
+    <h3>Paquete de sillones principal para todo evento</h3>
     <div>
       <input type="radio" name="sofa" [(ngModel)]="formData.sofa" [value]="true" /> Sí ($1500)
       <input type="radio" name="sofa" [(ngModel)]="formData.sofa" [value]="false" /> No

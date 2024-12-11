@@ -24,6 +24,11 @@ export class CrearPaqueteComponent {
     sofa: false,
   };
 
+  tunnelColors = {
+    amber: false,
+    white: false,
+  };
+
   decorOptions1: DecorOption[] = [
     { name: 'Mesa Principal', price: 1800, selected: false },
     { name: 'Recepción de Mesa de Dulces', price: 3000, selected: false },
@@ -61,6 +66,7 @@ export class CrearPaqueteComponent {
     if (this.selectedMamparaCircular) total += this.selectedMamparaCircular.price;
 
     if (this.formData.tunnel) total += 1800;
+
     if (this.formData.tela === 'luces') total += 1800;
     if (this.formData.tela === 'sinLuces') total += 1300;
 
@@ -70,7 +76,7 @@ export class CrearPaqueteComponent {
   }
 
   onSubmit() {
-    console.log('Formulario enviado:', this.formData);
+    console.log('Formulario enviado:', this.formData, this.tunnelColors);
     alert('Formulario enviado con éxito. Total: ' + this.calculateTotal());
   }
 }
