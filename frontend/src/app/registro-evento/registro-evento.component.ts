@@ -1,18 +1,9 @@
 // src/app/registro-evento/registro-evento.component.ts
 import { Component } from '@angular/core';
 import { EventoService } from '../evento.service'; // Importa el servicio
+import { Evento } from '../shared/Models/Evento'
 
 // Definir la interfaz para los datos del formulario
-interface SurveyData {
-  nombre: string;
-  telefono: string;
-  correo: string;
-  fecha_evento: string;
-  hora_inicio: string;
-  hora_fin: string;
-  direccion_evento: string;
-  tipo_evento: string;
-}
 
 @Component({
   selector: 'app-registro-evento',
@@ -20,7 +11,7 @@ interface SurveyData {
   styleUrls: ['./registro-evento.component.css']
 })
 export class RegistroEventoComponent {
-  surveyData: SurveyData = {
+  surveyData: Evento = {
     nombre: '',
     telefono: '',
     correo: '',

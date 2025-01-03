@@ -3,16 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import  { DataService } from './shared/data.service'
 
-interface Event {
-  nombre: string;
-  telefono: string;
-  correo: string;
-  fecha_evento: string;
-  hora_inicio: string;
-  hora_fin: string;
-  direccion_evento: string;
-  tipo_evento: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +10,7 @@ interface Event {
 export class EventoService {
   constructor(private dataService: DataService) {} // Inyecta el servicio
 
-  agregarEvento(evento: Event) {
+  agregarEvento(evento: Evento) {
     this.dataService.registrarEvento(evento).
     subscribe(
       ()=> {
