@@ -1,4 +1,10 @@
-interface Event {
+// Evento.ts
+export class Evento {
+    // Definición de la clase o interfaz
+}
+
+
+export interface Evento {
     nombre: string;
     telefono: string;
     correo: string;

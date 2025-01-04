@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import  { DataService } from './shared/data.service'
+import { Evento } from './shared/Models/Evento';
 
 
 @Injectable({

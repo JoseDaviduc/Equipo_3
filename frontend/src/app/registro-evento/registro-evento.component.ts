@@ -1,7 +1,7 @@
 // src/app/registro-evento/registro-evento.component.ts
 import { Component } from '@angular/core';
 import { EventoService } from '../evento.service'; // Importa el servicio
-import { Evento } from '../shared/Models/Evento'
+import { Evento } from '../shared/Models/Evento';
 
 // Definir la interfaz para los datos del formulario
 
