@@ -15,8 +15,8 @@ class Evento extends Model
         'correo',
         'fecha_evento',
         'hora_inicio',
-        'duracion',
-        'direccion',
-        'tipo_evento'
+        'direccion_evento',
+        'tipo_evento',
+        'numero_hora',
     ];
 }
