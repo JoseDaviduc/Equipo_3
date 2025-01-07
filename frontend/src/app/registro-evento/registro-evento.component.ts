@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { EventoService } from '../evento.service'; // Importa el servicio
 import { Evento } from '../shared/Models/Evento';
+import { Router } from '@angular/router';
 
 // Definir la interfaz para los datos del formulario
 
@@ -18,9 +19,9 @@ export class RegistroEventoComponent {
     correo: '',
     fecha_evento: '',
     hora_inicio: '',
-    hora_fin: '',
     direccion_evento: '',
-    tipo_evento: ''
+    tipo_evento: '',
+    numero_hora: ''
   };
 
   constructor(private eventoService: EventoService) {} // Inyecta el servicio
@@ -33,13 +34,13 @@ export class RegistroEventoComponent {
     // Limpiar el formulario
     this.surveyData = {
       nombre: '',
-      telefono: '',
-      correo: '',
-      fecha_evento: '',
-      hora_inicio: '',
-      hora_fin: '',
-      direccion_evento: '',
-      tipo_evento: ''
+    telefono: '',
+    correo: '',
+    fecha_evento: '',
+    hora_inicio: '',
+    direccion_evento: '',
+    tipo_evento: '',
+    numero_hora: ''
     };
   }
 }

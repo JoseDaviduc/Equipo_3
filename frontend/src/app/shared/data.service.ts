@@ -6,16 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://localhost:3000/packages'; // Cambia la URL según tu configuración
+  private apiUrl = 'http://localhost:8000'; // Cambia la URL según tu configuración
 
   constructor(private http: HttpClient) { }
 
   obtenerPaquetes(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/paquetes`);
+    return this.http.get(`${this.apiUrl}/eventos`);
   }
 
   actualizarPaquete(paqueteId: number, datosActualizados: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/paquetes/${paqueteId}`, datosActualizados);
+    return this.http.put(`${this.apiUrl}/eventos/${paqueteId}`, datosActualizados);
   }
 
   registrarEvento(evento: any): Observable<any> {

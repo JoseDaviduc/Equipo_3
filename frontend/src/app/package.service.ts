@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PackageService {
-  private apiUrl = 'http://localhost:3000/packages'; // URL de la API
+  private apiUrl = 'http://localhost:8000'; // URL de la API
 
   constructor(private http: HttpClient) { }
 
   // Obtener paquetes
   getPackages(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/eventos`);
   }
 
   // Actualizar paquete
   updatePackage(updatedPackage: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${updatedPackage.id}`, updatedPackage);
+    return this.http.put(`${this.apiUrl}/eventos/${updatedPackage.id}`, updatedPackage);
   }
 }

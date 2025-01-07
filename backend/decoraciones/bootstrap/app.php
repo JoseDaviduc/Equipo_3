@@ -15,4 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })->create();
+    }) 
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
+    }) 
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->validateCsrfTokens(except: [
+            '*' // <-- exclude this route
+        ]); }) ->create();
+
