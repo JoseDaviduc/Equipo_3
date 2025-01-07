@@ -7,6 +7,7 @@
     <ul>
       <li><a routerLink="/inicio">INICIO</a></li>
       <li><a routerLink="/historia">¿QUE HACEMOS?</a></li>
+      <li><a routerLink="/paquetes">PAQUETES</a></li>
       <li><a routerLink="/contacto"></a></li>
     </ul>
   </div>
@@ -26,7 +27,7 @@
     <input type="time" id="time" name="time" [(ngModel)]="formData.time" required />
 
     <label for="duration">Duración evento (horas):</label>
-    <input type="number" id="duration" name="duration" [(ngModel)]="formData.duration" required min="1" />
+    <input type="number" id="duration" name="duration" [(ngModel)]="formData.duration" required min="1" max="24" />
 
     <label for="location">Ubicación del Evento:</label>
     <textarea

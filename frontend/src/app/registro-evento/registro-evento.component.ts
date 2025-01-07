@@ -10,6 +10,7 @@ import { Evento } from '../shared/Models/Evento';
   templateUrl: './registro-evento.component.html',
   styleUrls: ['./registro-evento.component.css']
 })
+
 export class RegistroEventoComponent {
   surveyData: Evento = {
     nombre: '',

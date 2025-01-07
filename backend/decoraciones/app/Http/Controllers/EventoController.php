@@ -4,78 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class EventoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
-        $eventos = DB::table('Eventos')->get(); //Evento::latest()->paginate(5); 
-        
-        return $eventos;
+        $eventos = Evento::all();
+        return view('eventos.index', compact('eventos'));
     }
 
-    public function GetBodas()
-    {
-        //
-        $eventos = Evento::where('tipo_evento', 'bodas')->get(); 
-        
-        //DB::table('Eventos')->where('tipo_evento', 'bodas')->get();
-        
-        return $eventos;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-        $evento = Evento::create($request->validated()); 
-        return $evento;
-    }
+        $request->validate([
+            'nombre_completo' => 'required',
+            'telefono' => 'required',
+            'correo' => 'required|email',
+            'fecha_evento' => 'required|date',
+            'hora_inicio' => 'required',
+            'duracion' => 'required|integer',
+            'direccion' => 'required',
+            'tipo_evento' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Evento $evento)
-    {
-        //
-    }
+        Evento::create($request->all());
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Evento $evento)
-    {
-        //
+        return redirect()->back()->with('success', 'Evento agendado correctamente');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Evento $evento)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Evento $evento)
-    {
-        //
-    }
-}
+} 
