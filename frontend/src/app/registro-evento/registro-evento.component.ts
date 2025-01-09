@@ -24,12 +24,20 @@ export class RegistroEventoComponent {
     numero_hora: ''
   };
 
+  eventoguardado:boolean=false;
+
   constructor(private eventoService: EventoService) {} // Inyecta el servicio
 
   submitSurvey() {
     // Enviar los datos del formulario al servicio
     this.eventoService.agregarEvento({ ...this.surveyData });
     console.log('Datos de la encuesta enviados:', this.surveyData);
+    this.eventoguardado=true;
+    setTimeout(()=>{
+      this.eventoguardado=false;
+    },1000);
+
+
 
     // Limpiar el formulario
     this.surveyData = {
