@@ -1,17 +1,40 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Evento } from './evento.interface';
+
 
 interface DecorOption {
-  name: string;
-  price: number;
-  selected: boolean;
+    name: string;
+    price: number;
+    selected: boolean;
 }
 
 @Component({
-  selector: 'app-crear-paquete',
-  templateUrl: './crear-paquete.component.html',
+    selector: 'app-crear-paquete',
+    templateUrl: './crear-paquete.component.html',
   styleUrls: ['./crear-paquete.component.css'],
 })
 export class CrearPaqueteComponent {
+
+  evento: Evento = {
+    numero_telefono: '',
+    fecha_evento: '',
+    hora_evento: '',
+    duracion_evento: '',
+    ubicacion_evento: '',
+    decoracion_principal: '',
+    paquete_mampara_cuadrada: '',
+    paquete_mampara_circular: '',
+    tunel_de_luces_led: '',
+    telas_de_decoracion: '',
+    numero_de_colores_de_las_telas: null,
+    colores_de_las_telas: '',
+    paquete_de_sillones: '',
+  };
+  apiUrl = 'http://127.0.0.1:8000/diseniopaquetes/';
+  mensajeExito: string | null = null;
+  mensajeError: string | null = null;
+
   formData = {
     phone: '',
     date: '',
@@ -25,10 +48,10 @@ export class CrearPaqueteComponent {
     sofa: false,
   };
 
-  tunnelColors = {
-    amber: false,
-    white: false,
-  };
+    tunnelColors = {
+        amber: false,
+        white: false,
+    };
 
   decorOptions1: DecorOption[] = [
     { name: 'Mesa Principal', price: 1800, selected: false },
@@ -51,6 +74,8 @@ export class CrearPaqueteComponent {
   selectedDecoracionPrincipal: DecorOption | null = null;
   selectedMamparaCuadrada: DecorOption | null = null;
   selectedMamparaCircular: DecorOption | null = null;
+
+  constructor(private http: HttpClient) { }
 
   isOptionDisabled(option: DecorOption): boolean {
     const selectedCount = this.decorOptions1.filter(opt => opt.selected).length;
@@ -79,6 +104,30 @@ export class CrearPaqueteComponent {
   }
 
   onSubmit() {
+    this.evento.numero_telefono = this.formData.phone;
+    this.evento.fecha_evento = this.formData.date;
+    this.evento.hora_evento = this.formData.time;
+    this.evento.duracion_evento = ""+this.formData.duration+" horas";
+    this.evento.ubicacion_evento = this.formData.location;
+    this.evento.decoracion_principal = this.selectedDecoracionPrincipal ? this.selectedDecoracionPrincipal.name : null;
+    this.evento.paquete_mampara_cuadrada = this.selectedMamparaCuadrada ? this.selectedMamparaCuadrada.name : null;
+    this.evento.paquete_mampara_circular = this.selectedMamparaCircular ? this.selectedMamparaCircular.name : null;
+    this.evento.tunel_de_luces_led = this.formData.tunnel ? 'Si' : 'No';
+    this.evento.telas_de_decoracion = this.formData.tela;
+    this.evento.numero_de_colores_de_las_telas = this.formData.numColors.toString();
+    this.evento.colores_de_las_telas = this.formData.colorDetails;
+    this.evento.paquete_de_sillones = this.formData.sofa ? 'Si' : 'No';
+  
+
+    this.http.post<Evento>(this.apiUrl, this.evento).subscribe(response => {
+      console.log('Evento creado:', response);
+      this.mensajeExito = 'Evento creado con éxito';
+      this.mensajeError = null;
+    }, error => {
+      console.error('Error al crear el evento:', error);
+      this.mensajeExito = null;
+      this.mensajeError = 'Error al crear el evento' + error;
+    });
     console.log('Formulario enviado:', this.formData, this.tunnelColors);
     alert('Formulario enviado con éxito. Total: ' + this.calculateTotal());
   }

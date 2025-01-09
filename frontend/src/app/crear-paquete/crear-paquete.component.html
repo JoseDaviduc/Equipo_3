@@ -16,6 +16,9 @@
 <div class="form-container">
   <h1>Diseña tu Paquete de Decoración</h1>
   <form (ngSubmit)="onSubmit()">
+    <div *ngIf="mensajeExito" class="alert alert-success">{{ mensajeExito }}</div>
+    <div *ngIf="mensajeError" class="alert alert-danger">{{ mensajeError }}</div>
+
     <h2>Datos del Cliente</h2>
     <label for="phone">Número de Teléfono:</label>
     <input type="tel" id="phone" name="phone" [(ngModel)]="formData.phone" required />
