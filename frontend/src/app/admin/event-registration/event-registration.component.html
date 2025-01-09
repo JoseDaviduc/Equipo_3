@@ -14,41 +14,41 @@
             <li><a href="#">Opción 6</a></li>
         </ul>
     </aside>
-
+  
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Teléfono de Contacto</th>
                     <th>Correo Electrónico</th>
                     <th>Fecha de Evento</th>
                     <th>Hora de Inicio</th>
-                    <th>Hora de Finalización</th>
                     <th>Dirección del Lugar</th>
                     <th>Tipo de Evento</th>
+                    <th>Numero en Horas</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let event of events">
                     <td>{{ event.id }}</td>
-                    <td>{{ event.name }}</td>
-                    <td>{{ event.contactPhone }}</td>
-                    <td>{{ event.email }}</td>
-                    <td>{{ event.eventDate }}</td>
-                    <td>{{ event.startTime }}</td>
-                    <td>{{ event.endTime }}</td>
-                    <td>{{ event.location }}</td>
-                    <td>{{ event.eventType }}</td>
+                    <td>{{ event.nombre }}</td>
+                    <td>{{ event.telefono }}</td>
+                    <td>{{ event.correo }}</td>
+                    <td>{{ event.fecha_evento }}</td>
+                    <td>{{ event.hora_inicio }}</td>
+                    <td>{{ event.direccion_evento }}</td>
+                    <td>{{ event.tipo_evento }}</td>
+                    <td>{{ event.numero_hora }}</td>
                     <td>
-                        <button (click)="viewEvent(event)">Ver</button>
-                        <button (click)="editEvent(event)">Editar</button>
-                        <button (click)="deleteEvent(event)">Eliminar</button>
+  <!--                       <button (click)="viewEvent(event)">Ver</button>
+                        <button (click)="editEvent(event)">Editar</button> -->
+                        <button (click)="onDeleteEvent(event.id)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-</div>
+  </div>

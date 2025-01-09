@@ -1,48 +1,50 @@
-import { Component } from '@angular/core';
-
-interface Event {
-  id: number;
-  name: string;
-  contactPhone: string;
-  email: string;
-  eventDate: string;
-  startTime: string;
-  endTime: string;
-  location: string;
-  eventType: string;
-}
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/services/events.service';
+import { GetEvento } from 'src/app/shared/Models/Evento';
 
 @Component({
   selector: 'app-event-registration',
   templateUrl: './event-registration.component.html',
-  styleUrls: ['./event-registration.component.css']
+  styleUrls: ['./event-registration.component.css'],
+  standalone:true,
+  imports:[CommonModule]
 })
-export class EventRegistrationComponent {
-  events: Event[] = [
-    {
-      id: 1,
-      name: 'Juan Pérez',
-      contactPhone: '(123) 456-7890',
-      email: 'juan.perez@email.com',
-      eventDate: '2024-12-01',
-      startTime: '10:00 AM',
-      endTime: '2:00 PM',
-      location: 'Calle Falsa 123',
-      eventType: 'Conferencia',
-    },
-    // Puedes agregar más eventos aquí
-  ];
+export class EventRegistrationComponent implements OnInit {
+  events: GetEvento[] = [];
 
-  viewEvent(event: Event) {
+  constructor(private eventService: EventService) { }
+
+  ngOnInit(): void {
+    this.eventService.getEvents().subscribe(
+      data => {
+        console.log('Datos de eventos: ', data);
+        this.events = data;
+      },
+      error => {
+        console.error('Error al obtener eventos: ', error);
+      }
+    );
+  }
+
+  viewEvent(event: GetEvento): void {
     console.log('Ver evento:', event);
   }
 
-  editEvent(event: Event) {
+  editEvent(event: GetEvento): void {
     console.log('Editar evento:', event);
   }
 
-  deleteEvent(event: Event) {
-    this.events = this.events.filter(e => e.id !== event.id);
-    console.log('Evento eliminado:', event);
+
+  onDeleteEvent(id: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
+      this.eventService.deleteEvent(id).subscribe({
+        next: response => {
+          console.log(response.message);
+          this.events = this.events.filter(event => event.id !== id);
+        },
+        error: err => console.error('Error eliminando el evento:', err)
+      });
+    }
   }
 }

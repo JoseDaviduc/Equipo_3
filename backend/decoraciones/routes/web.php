@@ -16,3 +16,6 @@ Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index'
 
 // Ruta para guardar eventos
 Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
+
+//ruta para eliminar eventos
+Route::delete('/eventos/{evento}', [EventoController::class, 'destroy']);

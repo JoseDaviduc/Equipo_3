@@ -13,19 +13,22 @@ class EventoController extends Controller
      */
     public function index()
     {
-        //
-        $eventos = DB::table('Eventos')->get(); //Evento::latest()->paginate(5); 
-        
-        return $eventos;
+        // Obtener todos los eventos
+        $eventos = DB::table('Eventos')->get();
+
+        // Retornar la respuesta con los eventos dentro de un objeto 'data'
+        return response()->json([
+            'data' => $eventos
+        ]);
     }
 
     public function GetBodas()
     {
         //
-        $eventos = Evento::where('tipo_evento', 'bodas')->get(); 
-        
+        $eventos = Evento::where('tipo_evento', 'bodas')->get();
+
         //DB::table('Eventos')->where('tipo_evento', 'bodas')->get();
-        
+
         return $eventos;
     }
 
@@ -44,7 +47,7 @@ class EventoController extends Controller
     {
         //
         $evento = Evento::create($request->all(
-            )); 
+            ));
         return $evento;
     }
 
@@ -77,7 +80,12 @@ class EventoController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        //
+        // Eliminar el evento
+        $evento->delete();
+
+        // Retornar una respuesta indicando que la operación fue exitosa
+        return response()->json([
+            'message' => 'Evento eliminado exitosamente.'
+        ], 200);
     }
 }
-
