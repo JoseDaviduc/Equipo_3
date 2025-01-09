@@ -66,7 +66,7 @@
 
                 <div class="form-group">
                     <label for="tipo_evento">Tipo de evento:</label>
-                    <select id="tipo_evento" name="tipo_evento" required> <!-- Añadí required para validar que seleccionen una opción -->
+                    <select id="tipo_evento" name="tipo_evento" required [(ngModel)]="surveyData.tipo_evento"> <!-- Añadí required para validar que seleccionen una opción -->
                         <option value="cumpleanos">Cumpleaños</option>
                         <option value="boda">Boda</option>
                         <option value="Quince años">Quince años</option>
@@ -79,6 +79,9 @@
                 </div>
             </div>
         </form>
+        <div *ngIf="eventoguardado">
+            "Evento Agendado Exitosamente"
+        </div>
     </div>
 </body>
 </html>
