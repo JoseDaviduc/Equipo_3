@@ -1,3 +1,38 @@
+/* Estilos para la navegación */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Ancho máximo para centrar */
+  margin: 0 auto; /* Centrar horizontalmente */
+  padding: 0 20px; /* Espaciado interno */
+}
+
+/* Estilos para el contenedor del logo */
+.logo-container {
+  display: flex; /* Usar flexbox para alinear logo y texto */
+  align-items: center; /* Alinear verticalmente */
+}
+
+/* Estilos para el logo */
+.logo-icon {
+  background-image: url('src/assets/logo.png'); /* Ruta a tu imagen */
+  background-size: contain; /* Ajusta el tamaño de la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  width: 50px; /* Ajusta el ancho de acuerdo a tus necesidades */
+  height: 50px; /* Ajusta la altura de acuerdo a tus necesidades */
+  margin-right: 10px; /* Espaciado entre la imagen y el texto */
+}
+
+/* Estilos para el texto del logo */
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f39c12; /* Color del texto del logo */
+}
+
+
+
 /* Contenedor principal */
 .login-container {
   display: flex;
