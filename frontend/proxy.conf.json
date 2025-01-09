@@ -1,0 +1,7 @@
+{
+    "/eventos": {
+      "target": "http://localhost:8000",
+      "chargetOrigin": true,
+      "secure": false
+    }
+  }
