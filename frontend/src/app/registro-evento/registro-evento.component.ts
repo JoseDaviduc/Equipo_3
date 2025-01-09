@@ -35,7 +35,7 @@ export class RegistroEventoComponent {
     this.eventoguardado=true;
     setTimeout(()=>{
       this.eventoguardado=false;
-    },1000);
+    },2000);
 
 
 
