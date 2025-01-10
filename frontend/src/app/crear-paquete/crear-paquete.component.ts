@@ -1,134 +1,144 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Evento } from './evento.interface';
-
+import { makeRequired } from '../shared/validators/makeRequired.validator';
+import { phoneNumberValidator } from '../shared/validators/phoneNumber.Validator';
+import { lengthValidator } from '../shared/validators/lengthValidator';
+import { max } from 'rxjs';
+import { wordValidator } from '../shared/validators/word.validator';
 
 interface DecorOption {
-    name: string;
-    price: number;
-    selected: boolean;
+  name: string;
+  price: number;
 }
 
 @Component({
-    selector: 'app-crear-paquete',
-    templateUrl: './crear-paquete.component.html',
+  selector: 'app-crear-paquete',
+  templateUrl: './crear-paquete.component.html',
   styleUrls: ['./crear-paquete.component.css'],
 })
-export class CrearPaqueteComponent {
-
-  evento: Evento = {
-    numero_telefono: '',
-    fecha_evento: '',
-    hora_evento: '',
-    duracion_evento: '',
-    ubicacion_evento: '',
-    decoracion_principal: '',
-    paquete_mampara_cuadrada: '',
-    paquete_mampara_circular: '',
-    tunel_de_luces_led: '',
-    telas_de_decoracion: '',
-    numero_de_colores_de_las_telas: null,
-    colores_de_las_telas: '',
-    paquete_de_sillones: '',
+export class CrearPaqueteComponent implements OnInit {
+  paqueteForm!: FormGroup;
+  tunnelColors = {
+    amber: false,
+    white: false
   };
-  apiUrl = 'http://127.0.0.1:8000/diseniopaquetes/';
+
   mensajeExito: string | null = null;
   mensajeError: string | null = null;
-
-  formData = {
-    phone: '',
-    date: '',
-    time: '',
-    duration: 1,
-    location: '',
-    tunnel: false,
-    tela: '',
-    numColors: 1,
-    colorDetails: '',
-    sofa: false,
-  };
-
-    tunnelColors = {
-        amber: false,
-        white: false,
-    };
+  apiUrl = 'http://127.0.0.1:8000/diseniopaquetes/';
 
   decorOptions1: DecorOption[] = [
-    { name: 'Mesa Principal', price: 1800, selected: false },
-    { name: 'Recepción de Mesa de Dulces', price: 3000, selected: false },
-    { name: 'Recepción de Mesa sin Dulces', price: 800, selected: false },
+    { name: 'Mesa Principal', price: 1800 },
+    { name: 'Recepción de Mesa de Dulces', price: 3000 },
+    { name: 'Recepción de Mesa sin Dulces', price: 800 },
   ];
 
   decorOptions2: DecorOption[] = [
-    { name: 'Mampara Cuadrada Chico', price: 300, selected: false },
-    { name: 'Mampara Cuadrada Mediano', price: 600, selected: false },
-    { name: 'Mampara Cuadrada Grande', price: 900, selected: false },
+    { name: 'Mampara Cuadrada Chico', price: 300 },
+    { name: 'Mampara Cuadrada Mediano', price: 600 },
+    { name: 'Mampara Cuadrada Grande', price: 900 },
   ];
 
   decorOptions3: DecorOption[] = [
-    { name: 'Mampara Circular Chico', price: 300, selected: false },
-    { name: 'Mampara Circular Mediano', price: 600, selected: false },
-    { name: 'Mampara Circular Grande', price: 900, selected: false },
+    { name: 'Mampara Circular Chico', price: 300 },
+    { name: 'Mampara Circular Mediano', price: 600 },
+    { name: 'Mampara Circular Grande', price: 900 },
   ];
 
-  selectedDecoracionPrincipal: DecorOption | null = null;
-  selectedMamparaCuadrada: DecorOption | null = null;
-  selectedMamparaCircular: DecorOption | null = null;
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  ngOnInit(): void {
+    this.paqueteForm = this.fb.group({
+      numero_telefono: ['', [makeRequired, phoneNumberValidator()]],
+      fecha_evento: ['', [makeRequired]],
+      hora_evento: ['', makeRequired],
+      duracion_evento: [1, [makeRequired, Validators.min(1), Validators.max(24)]],
+      ubicacion_evento: ['', [makeRequired, lengthValidator({ min: 10, max: 80 })]],
+      decoracion_principal: ['', makeRequired],
+      paquete_mampara_cuadrada: ['', makeRequired],
+      paquete_mampara_circular: ['', makeRequired],
+      tunel_de_luces_led: [false, makeRequired],
+      telas_de_decoracion: ['', makeRequired],
+      numero_de_colores_de_las_telas: [1, [makeRequired, Validators.min(1), Validators.max(3)]],
+      colores_de_las_telas: ['', [wordValidator(),lengthValidator({min: 3, max: 15})]],
+      paquete_de_sillones: [false],
 
-  isOptionDisabled(option: DecorOption): boolean {
-    const selectedCount = this.decorOptions1.filter(opt => opt.selected).length;
-    return selectedCount >= 2 && !option.selected;
+    });
   }
 
   calculateTotal(): number {
     let total = 0;
 
-    this.decorOptions1.forEach(option => {
-      if (option.selected) total += option.price;
-    });
+    const formValues = this.paqueteForm.value;
 
-    if (this.selectedDecoracionPrincipal) total += this.selectedDecoracionPrincipal.price;
-    if (this.selectedMamparaCuadrada) total += this.selectedMamparaCuadrada.price;
-    if (this.selectedMamparaCircular) total += this.selectedMamparaCircular.price;
 
-    if (this.formData.tunnel) total += 1800;
+    const decorPrincipal = this.decorOptions1.find(option => option.name === formValues.decoracion_principal);
+    if (decorPrincipal) total += decorPrincipal.price;
 
-    if (this.formData.tela === 'luces') total += 1800;
-    if (this.formData.tela === 'sinLuces') total += 1300;
 
-    if (this.formData.sofa) total += 1500;
+    const mamparaCuadrada = this.decorOptions2.find(option => option.name === formValues.paquete_mampara_cuadrada);
+    if (mamparaCuadrada) total += mamparaCuadrada.price;
+
+
+    const mamparaCircular = this.decorOptions3.find(option => option.name === formValues.paquete_mampara_circular);
+    if (mamparaCircular) total += mamparaCircular.price;
+
+
+    if (formValues.tunel_de_luces_led) total += 1800;
+
+
+    if (formValues.telas_de_decoracion === 'luces') total += 1800;
+    if (formValues.telas_de_decoracion === 'sinLuces') total += 1300;
+
+
+    if (formValues.paquete_de_sillones) total += 1500;
 
     return total;
   }
 
-  onSubmit() {
-    this.evento.numero_telefono = this.formData.phone;
-    this.evento.fecha_evento = this.formData.date;
-    this.evento.hora_evento = this.formData.time;
-    this.evento.duracion_evento = ""+this.formData.duration+" horas";
-    this.evento.ubicacion_evento = this.formData.location;
-    this.evento.decoracion_principal = this.selectedDecoracionPrincipal ? this.selectedDecoracionPrincipal.name : null;
-    this.evento.paquete_mampara_cuadrada = this.selectedMamparaCuadrada ? this.selectedMamparaCuadrada.name : null;
-    this.evento.paquete_mampara_circular = this.selectedMamparaCircular ? this.selectedMamparaCircular.name : null;
-    this.evento.tunel_de_luces_led = this.formData.tunnel ? 'Si' : 'No';
-    this.evento.telas_de_decoracion = this.formData.tela;
-    this.evento.numero_de_colores_de_las_telas = this.formData.numColors.toString();
-    this.evento.colores_de_las_telas = this.formData.colorDetails;
-    this.evento.paquete_de_sillones = this.formData.sofa ? 'Si' : 'No';
-  
+  onSubmit(): void {
+    if (this.paqueteForm.invalid) {
+      this.markAllAsTouched(this.paqueteForm);
+      this.mensajeError = 'Por favor, completa todos los campos requeridos.';
+      return;
+    }
 
-    this.http.post<Evento>(this.apiUrl, this.evento).subscribe(response => {
-      console.log('Evento creado:', response);
-      this.mensajeExito = 'Evento creado con éxito';
-      this.mensajeError = null;
-    }, error => {
-      console.error('Error al crear el evento:', error);
-      this.mensajeExito = null;
-      this.mensajeError = 'Error al crear el evento' + error;
-    });
-    console.log('Formulario enviado:', this.formData, this.tunnelColors);
-    alert('Formulario enviado con éxito. Total: ' + this.calculateTotal());
+    const evento: Evento = {
+      ...this.paqueteForm.value,
+      duracion_evento: `${this.paqueteForm.value.duracion_evento} horas`,
+    };
+
+    this.http.post<Evento>(this.apiUrl, evento).subscribe(
+      response => {
+        console.log('Evento creado:', response);
+        this.mensajeExito = 'Evento creado con éxito';
+        this.mensajeError = null;
+        this.paqueteForm.reset();
+      },
+      error => {
+        console.error('Error al crear el evento:', error);
+        this.mensajeExito = null;
+        this.mensajeError = 'Error al crear el evento: ' + error.message;
+      }
+    );
   }
+
+
+  private markAllAsTouched(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach((key) => {
+      const control = formGroup.get(key);
+      if (control) {
+        control.markAsTouched();
+        control.markAsDirty();
+
+
+        if ((control as any).controls) {
+          this.markAllAsTouched(control as FormGroup);
+        }
+      }
+    });
+  }
+
 }

@@ -31,7 +31,6 @@ import { Injectable } from '@angular/core';
     HistoriaComponent,
     PaquetesComponent,
     ContactoComponent,
-    RegistroEventoComponent,
     CrearPaqueteComponent,
     FooterComponent,
     AdminDashboardComponent,

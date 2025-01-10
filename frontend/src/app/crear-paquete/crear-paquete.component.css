@@ -128,3 +128,19 @@ textarea {
   border-radius: 4px;
   resize: vertical; /* Permite redimensionar verticalmente */
 }
+
+.error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 4px;
+  display: block;
+}
+
+.horizontal-align {
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-align label {
+  margin-left: 8px;
+}

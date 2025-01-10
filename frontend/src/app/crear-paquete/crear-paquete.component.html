@@ -1,8 +1,8 @@
 <header class="header">
   <div class="navigation">
     <div class="logo-container">
-      <div class="logo-icon"></div> <!-- Aquí se mostrará el logo -->
-      <span class="logo-text">DECORACIONES CASTILLO</span> <!-- Nombre de la empresa -->
+      <div class="logo-icon"></div>
+      <span class="logo-text">DECORACIONES CASTILLO</span> 
     </div>
     <ul>
       <li><a routerLink="/inicio">INICIO</a></li>
@@ -12,114 +12,236 @@
     </ul>
   </div>
 </header>
-<br> 
+<br>
 <div class="form-container">
   <h1>Diseña tu Paquete de Decoración</h1>
-  <form (ngSubmit)="onSubmit()">
+  <form [formGroup]="paqueteForm" (ngSubmit)="onSubmit()">
     <div *ngIf="mensajeExito" class="alert alert-success">{{ mensajeExito }}</div>
     <div *ngIf="mensajeError" class="alert alert-danger">{{ mensajeError }}</div>
 
     <h2>Datos del Cliente</h2>
+
+    <!-- Número de Teléfono -->
     <label for="phone">Número de Teléfono:</label>
-    <input type="tel" id="phone" name="phone" [(ngModel)]="formData.phone" required />
+    <input type="tel" id="phone" formControlName="numero_telefono" />
+    <div *ngIf="paqueteForm.get('numero_telefono')?.invalid && paqueteForm.get('numero_telefono')?.touched">
+      <span *ngIf="paqueteForm.get('numero_telefono')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('numero_telefono')?.errors?.['message'] }}
+      </span>
+    </div>
 
+    <!-- Fecha del Evento -->
     <label for="date">Fecha del Evento:</label>
-    <input type="date" id="date" name="date" [(ngModel)]="formData.date" required />
+    <input type="date" id="date" formControlName="fecha_evento" />
+    <div *ngIf="paqueteForm.get('fecha_evento')?.invalid && paqueteForm.get('fecha_evento')?.touched">
+      <span *ngIf="paqueteForm.get('fecha_evento')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('fecha_evento')?.errors?.['message'] }}
+      </span>
+    </div>
 
+    <!-- Hora del Evento -->
     <label for="time">Hora del Evento:</label>
-    <input type="time" id="time" name="time" [(ngModel)]="formData.time" required />
+    <input type="time" id="time" formControlName="hora_evento" />
+    <div *ngIf="paqueteForm.get('hora_evento')?.invalid && paqueteForm.get('hora_evento')?.touched">
+      <span *ngIf="paqueteForm.get('hora_evento')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('hora_evento')?.errors?.['message'] }}
+      </span>
+    </div>
 
-    <label for="duration">Duración evento (horas):</label>
-    <input type="number" id="duration" name="duration" [(ngModel)]="formData.duration" required min="1" max="24" />
+    <!-- Duración del Evento -->
+    <label for="duration">Duración del evento (horas):</label>
+    <input type="number" id="duration" formControlName="duracion_evento" />
+    <div *ngIf="paqueteForm.get('duracion_evento')?.invalid && paqueteForm.get('duracion_evento')?.touched">
+      <span *ngIf="paqueteForm.get('duracion_evento')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('duracion_evento')?.errors?.['message'] }}
+      </span>
+      <span *ngIf="paqueteForm.get('duracion_evento')?.errors?.['min']" class="error-message">La duración debe ser al menos 1 hora.</span>
+      <span *ngIf="paqueteForm.get('duracion_evento')?.errors?.['max']" class="error-message">La duración no puede exceder 24 horas.</span>
+    </div>
 
+    <!-- Ubicación del Evento -->
     <label for="location">Ubicación del Evento:</label>
-    <textarea
-      id="location"
-      name="location"
-      [(ngModel)]="formData.location"
-      placeholder="Escribe aquí la dirección o detalles de la ubicación del evento"
-      rows="3"
-      required
-    ></textarea>
+    <textarea id="location" formControlName="ubicacion_evento" rows="3"></textarea>
+    <div *ngIf="paqueteForm.get('ubicacion_evento')?.invalid && paqueteForm.get('ubicacion_evento')?.touched">
+      <span *ngIf="paqueteForm.get('ubicacion_evento')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('ubicacion_evento')?.errors?.['message'] }}
+      </span>
+    </div>
 
+    <!-- Opciones de Decoración -->
     <h2>Opciones de Decoración</h2>
-    <h3>Decoracion Principal</h3>
+
+    <h3>Decoración Principal</h3>
     <div *ngFor="let option of decorOptions1">
       <input
-      type="radio"
-      name="decoracionPrincipal"
-      [(ngModel)]="selectedDecoracionPrincipal"
-      [value]="option"
+        type="radio"
+        formControlName="decoracion_principal"
+        [value]="option.name"
       />
       {{ option.name }} ({{ option.price | currency }})
     </div>
+    <div *ngIf="paqueteForm.get('decoracion_principal')?.invalid && paqueteForm.get('decoracion_principal')?.touched">
+      <span *ngIf="paqueteForm.get('decoracion_principal')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('decoracion_principal')?.errors?.['message'] }}
+      </span>
+    </div>
 
-    <h3>Paquete mampara cuadrada (Incluye 3)</h3>
+    <h3>Paquete Mampara Cuadrada</h3>
     <div *ngFor="let option of decorOptions2">
       <input
         type="radio"
-        name="mamparaCuadrada"
-        [(ngModel)]="selectedMamparaCuadrada"
-        [value]="option"
+        formControlName="paquete_mampara_cuadrada"
+        [value]="option.name"
       />
       {{ option.name }} ({{ option.price | currency }})
     </div>
+    <div *ngIf="paqueteForm.get('paquete_mampara_cuadrada')?.invalid && paqueteForm.get('paquete_mampara_cuadrada')?.touched">
+      <span *ngIf="paqueteForm.get('paquete_mampara_cuadrada')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('paquete_mampara_cuadrada')?.errors?.['message'] }}
+      </span>
+    </div>
 
-    <h3>Paquete mampara circular (Incluye 3)</h3>
+    <!-- Paquete Mampara Circular -->
+    <h3>Paquete Mampara Circular</h3>
     <div *ngFor="let option of decorOptions3">
       <input
         type="radio"
-        name="mamparaCircular"
-        [(ngModel)]="selectedMamparaCircular"
-        [value]="option"
+        formControlName="paquete_mampara_circular"
+        [value]="option.name"
       />
       {{ option.name }} ({{ option.price | currency }})
     </div>
-
-    <h3>Túnel de luces LED</h3>
-    <div>
-      <input type="radio" name="tunnel" [(ngModel)]="formData.tunnel" [value]="true" /> Sí ($1800)
-      <input type="radio" name="tunnel" [(ngModel)]="formData.tunnel" [value]="false" /> No
-    </div>
-    <div *ngIf="formData.tunnel">
-      <h4>Selecciona los colores (Amarillo y/o Blanco):</h4>
-      <div>
-        <input
-          type="checkbox"
-          id="colorAmarillo"
-          [(ngModel)]="tunnelColors.amber"
-        />
-        <label for="colorAmarillo">Amarillo</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="colorBlanco"
-          [(ngModel)]="tunnelColors.white"
-        />
-        <label for="colorBlanco">Blanco</label>
-      </div>
+    <div *ngIf="paqueteForm.get('paquete_mampara_circular')?.invalid && paqueteForm.get('paquete_mampara_circular')?.touched">
+      <span *ngIf="paqueteForm.get('paquete_mampara_circular')?.errors?.['message']" class="error-message">
+        {{ paqueteForm.get('paquete_mampara_circular')?.errors?.['message'] }}
+      </span>
     </div>
 
-    <h3>Telas de decoracion</h3>
-    <div>
-      <input type="radio" name="tela" [(ngModel)]="formData.tela" [value]="'luces'" /> Con luces ($1800)
-      <input type="radio" name="tela" [(ngModel)]="formData.tela" [value]="'sinLuces'" /> Sin luces ($1300)
-    </div>
-    <label for="numColors">Número de colores de las telas (máximo 3):</label>
-    <input type="number" id="numColors" name="numColors" [(ngModel)]="formData.numColors" min="1" max="3" />
-    <label for="colorDetails">Especifica los colores de las telas:</label>
-    <input type="text" id="colorDetails" name="colorDetails" [(ngModel)]="formData.colorDetails" />
-
-    <h3>Paquete de sillones principal para todo evento</h3>
-    <div>
-      <input type="radio" name="sofa" [(ngModel)]="formData.sofa" [value]="true" /> Sí ($1500)
-      <input type="radio" name="sofa" [(ngModel)]="formData.sofa" [value]="false" /> No
-    </div>
-
-    <h2>Total: {{ calculateTotal() | currency }}</h2>
-    <button type="submit">Enviar</button>
-  </form>
+<!-- Túnel de luces LED -->
+<h3>Túnel de luces LED</h3>
+<div class="horizontal-align">
+  <input
+    type="radio"
+    id="tunelSi"
+    formControlName="tunel_de_luces_led"
+    [value]="true"
+  />
+  <label for="tunelSi">Sí ($1800)</label>
+  <input
+    type="radio"
+    id="tunelNo"
+    formControlName="tunel_de_luces_led"
+    [value]="false"
+  />
+  <label for="tunelNo">No</label>
 </div>
-<br> 
-<br> 
+
+
+<div *ngIf="paqueteForm.get('tunel_de_luces_led')?.value">
+  <h4>Selecciona los colores (Amarillo y/o Blanco):</h4>
+  <div class="horizontal-align">
+    <input
+      type="checkbox"
+      id="colorAmarillo"
+      [(ngModel)]="tunnelColors.amber"
+    />
+    <label for="colorAmarillo">Amarillo</label>
+  </div>
+  <div class="horizontal-align">
+    <input
+      type="checkbox"
+      id="colorBlanco"
+      [(ngModel)]="tunnelColors.white"
+    />
+    <label for="colorBlanco">Blanco</label>
+  </div>
+</div>
+<div *ngIf="paqueteForm.get('tunel_de_luces_led')?.invalid && paqueteForm.get('tunel_de_luces_led')?.touched">
+  <span *ngIf="paqueteForm.get('tunel_de_luces_led')?.errors?.['message']" class="error-message">
+    {{ paqueteForm.get('tunel_de_luces_led')?.errors?.['message'] }}
+  </span>
+</div>
+
+   <!-- Telas de decoración -->
+   <h3>Telas de decoración</h3>
+   <div>
+    <div class="horizontal-align">
+     <input
+       type="radio"
+       id="telaConLuces"
+       formControlName="telas_de_decoracion"
+       [value]="'luces'"
+     />
+     <label for="telaConLuces">Con luces ($1800)</label>
+     <input
+       type="radio"
+       id="telaSinLuces"
+       formControlName="telas_de_decoracion"
+       [value]="'sinLuces'"
+     />
+     <label for="telaSinLuces">Sin luces ($1300)</label>
+   </div>
+  </div>
+  <div *ngIf="paqueteForm.get('telas_de_decoracion')?.invalid && paqueteForm.get('telas_de_decoracion')?.touched">
+    <span *ngIf="paqueteForm.get('telas_de_decoracion')?.errors?.['message']" class="error-message">
+      {{ paqueteForm.get('telas_de_decoracion')?.errors?.['message'] }}
+    </span>
+  </div>
+
+   <label for="numColors">Número de colores de las telas (máximo 3):</label>
+   <input
+     type="number"
+     id="numColors"
+     formControlName="numero_de_colores_de_las_telas"
+     [min]="1"
+     [max]="3"
+   />
+   <div *ngIf="paqueteForm.get('numero_de_colores_de_las_telas')?.invalid && paqueteForm.get('numero_de_colores_de_las_telas')?.touched">
+    <span *ngIf="paqueteForm.get('numero_de_colores_de_las_telas')?.errors?.['message']" class="error-message">
+      {{ paqueteForm.get('numero_de_colores_de_las_telas')?.errors?.['message'] }}
+    </span>
+    <span *ngIf="paqueteForm.get('numero_de_colores_de_las_telas')?.errors?.['min']" class="error-message">Mínimo se requiere un color.</span>
+      <span *ngIf="paqueteForm.get('numero_de_colores_de_las_telas')?.errors?.['max']" class="error-message">Máximo se requiere 3 colores.</span>
+  </div>
+
+   <label for="colorDetails">Especifica los colores de las telas:</label>
+   <input
+     type="text"
+     id="colorDetails"
+     formControlName="colores_de_las_telas"
+   />
+   <div *ngIf="paqueteForm.get('colores_de_las_telas')?.invalid && paqueteForm.get('colores_de_las_telas')?.touched">
+    <span *ngIf="paqueteForm.get('colores_de_las_telas')?.errors?.['message']" class="error-message">
+      {{ paqueteForm.get('colores_de_las_telas')?.errors?.['message'] }}
+    </span>
+  </div>
+
+
+   <!-- Paquete de sillones -->
+   <h3>Paquete de sillones principal para todo evento</h3>
+   <div>
+    <div class="horizontal-align">
+     <input
+       type="radio"
+       id="sillonesSi"
+       formControlName="paquete_de_sillones"
+       [value]="true"
+     />
+     <label for="sillonesSi">Sí ($1500)</label>
+     <input
+       type="radio"
+       id="sillonesNo"
+       formControlName="paquete_de_sillones"
+       [value]="false"
+     />
+     <label for="sillonesNo">No</label>
+   </div>
+  </div>
+
+   <!-- Total -->
+   <h2>Total: {{ calculateTotal() | currency }}</h2>
+   <button type="submit">Enviar</button>
+ </form>
+</div>
+<br>
+<br>
