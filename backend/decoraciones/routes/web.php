@@ -9,13 +9,21 @@ Route::get('/', function () {
 });
 
 Route::resource('/eventos', EventoController::class);
-Route::apiResource('/diseniopaquetes', DiseniopaqueteController::class);
+
+//Lista de paquetes creados
+Route::get('/paquetes', [DiseniopaqueteController::class, 'index']);
+
+//Eliminar paquete
+Route::delete('/dltpaquete/{evento}', [DiseniopaqueteController::class, 'destroy']);
+
+Route::apiResource('diseniopaquetes', DiseniopaqueteController::class);
 
 // Ruta para listar eventos
 Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
 
 // Ruta para guardar eventos
 Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
+
 
 //ruta para eliminar eventos
 Route::delete('/eventos/{evento}', [EventoController::class, 'destroy']);

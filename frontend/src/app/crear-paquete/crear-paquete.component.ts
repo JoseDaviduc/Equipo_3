@@ -62,8 +62,9 @@ export class CrearPaqueteComponent implements OnInit {
       tunel_de_luces_led: [false, makeRequired],
       telas_de_decoracion: ['', makeRequired],
       numero_de_colores_de_las_telas: [1, [makeRequired, Validators.min(1), Validators.max(3)]],
-      colores_de_las_telas: ['', [wordValidator(),lengthValidator({min: 3, max: 15})]],
+      colores_de_las_telas: ['', [wordValidator(),lengthValidator({min: 3, max: 20})]],
       paquete_de_sillones: [false],
+      total_a_pagar_number: [0]
 
     });
   }
@@ -105,11 +106,17 @@ export class CrearPaqueteComponent implements OnInit {
       return;
     }
 
+    // Calcular el total a pagar antes de enviar el formulario
+    const total = this.calculateTotal();
+
+    // Crear el objeto evento con el total a pagar
     const evento: Evento = {
       ...this.paqueteForm.value,
       duracion_evento: `${this.paqueteForm.value.duracion_evento} horas`,
+      total_a_pagar: total, // Asignar el total calculado
     };
 
+    // Enviar los datos al backend
     this.http.post<Evento>(this.apiUrl, evento).subscribe(
       response => {
         console.log('Evento creado:', response);

@@ -1,0 +1,63 @@
+<div class="admin-dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="https://via.placeholder.com/80" alt="Profile">
+        <span>Decoraciones Castillo</span>
+      </div>
+      <ul class="menu">
+        <li><a routerLink="/admin">Panel principal</a></li>
+        <li><a routerLink="/admin/events">Eventos Registrados</a></li>
+        <li><a routerLink="/admin/paquetes">Paquetes Registrados</a></li>
+      </ul>
+    </aside>
+  
+    <!-- Table Container -->
+    <div class="table-container">
+      <h2 class="table-title">Paquetes Creados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Teléfono de Contacto</th>
+            <th>Fecha de Evento</th>
+            <th>Hora de Evento</th>
+            <th>Duración</th>
+            <th>Ubicación</th>
+            <th>Decoración Principal</th>
+            <th>Paquete Mampara Cuadrada</th>
+            <th>Paquete Mampara Circular</th>
+            <th>Túnel de Luces LED</th>
+            <th>Telas de Decoracion</th>
+            <th>No. de Colores de Telas</th>
+            <th>Colores de las Telas</th>
+            <th>Paquete de Sillones</th>
+            <th>Total A Pagar</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let paquete of paquetes">
+            <td>{{ paquete.id }}</td>
+            <td>{{ paquete.numero_telefono }}</td>
+            <td>{{ paquete.fecha_evento }}</td>
+            <td>{{ paquete.hora_evento }}</td>
+            <td>{{ paquete.duracion_evento }}</td>
+            <td>{{ paquete.ubicacion_evento }}</td>
+            <td>{{ paquete.decoracion_principal }}</td>
+            <td>{{ paquete.paquete_mampara_cuadrada }}</td>
+            <td>{{ paquete.paquete_mampara_circular }}</td>
+            <td>{{ paquete.tunel_de_luces_led }}</td>
+            <td>{{ paquete.telas_de_decoracion }}</td>
+            <td>{{ paquete.numero_de_colores_de_las_telas }}</td>
+            <td>{{ paquete.colores_de_las_telas || 'No disponible' }}</td>
+            <td>{{ paquete.paquete_de_sillones }}</td>
+            <td>{{'$' + paquete.total_a_pagar}}</td>
+            <td>
+              <button (click)="onDeletePaquete(paquete.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

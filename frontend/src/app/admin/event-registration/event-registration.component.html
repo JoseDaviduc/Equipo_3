@@ -6,16 +6,13 @@
         </div>
         <ul class="menu">
             <li><a routerLink="/admin">Panel principal</a></li>
-            <li><a routerLink="/admin">Eventos Registrados</a></li>
-            <li><a href="#">Calendario de Eventos</a></li>
-            <li><a href="#">Opción 3</a></li>
-            <li><a href="#">Opción 4</a></li>
-            <li><a href="#">Opción 5</a></li>
-            <li><a href="#">Opción 6</a></li>
+            <li><a routerLink="/admin/events">Eventos Registrados</a></li>
+            <li><a routerLink="/admin/paquetes">Paquetes Registrados</a></li>
         </ul>
     </aside>
   
     <div class="table-container">
+        <h2 class="table-title">Eventos Registrados</h2>
         <table>
             <thead>
                 <tr>
@@ -25,9 +22,9 @@
                     <th>Correo Electrónico</th>
                     <th>Fecha de Evento</th>
                     <th>Hora de Inicio</th>
+                    <th>Hora de Finalización</th>
                     <th>Dirección del Lugar</th>
                     <th>Tipo de Evento</th>
-                    <th>Numero en Horas</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -43,7 +40,7 @@
                     <td>{{ event.tipo_evento }}</td>
                     <td>{{ event.numero_hora }}</td>
                     <td>
-  <!--                       <button (click)="viewEvent(event)">Ver</button>
+                        <!-- <button (click)="viewEvent(event)">Ver</button>
                         <button (click)="editEvent(event)">Editar</button> -->
                         <button (click)="onDeleteEvent(event.id)">Eliminar</button>
                     </td>

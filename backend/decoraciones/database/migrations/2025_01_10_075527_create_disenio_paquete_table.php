@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('numero_de_colores_de_las_telas')->nullable();
             $table->string('colores_de_las_telas')->nullable();
             $table->string('paquete_de_sillones')->nullable();
+            $table->integer('total_a_pagar')->nullable();
             $table->timestamps(); // Crea campos created_at y updated_at
         });
     }

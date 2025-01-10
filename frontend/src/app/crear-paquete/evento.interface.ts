@@ -12,6 +12,7 @@ interface Evento {
     numero_de_colores_de_las_telas: string | null;
     colores_de_las_telas: string | null;
     paquete_de_sillones: string| null;
+    total_a_pagar: number;
 }
 
 export { Evento };

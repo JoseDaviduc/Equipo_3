@@ -11,9 +11,14 @@ class DiseniopaqueteController extends Controller
 {
     public function index()
     {
+
         $eventos = Diseniopaquete::all();
-        return response()->json($eventos);
+
+        return response()->json([
+            'data' => $eventos
+        ]);
     }
+
 
     public function store(Request $request)
     {
@@ -35,6 +40,9 @@ class DiseniopaqueteController extends Controller
     public function destroy(Diseniopaquete $evento)
     {
         $evento->delete();
-        return response()->json(null, 204); // 204 No Content
+
+        return response()->json([
+            'message' => 'Paquete eliminado correctamente.'
+        ], 201);
     }
 }

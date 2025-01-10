@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { EventService } from 'src/app/services/events.service';
 import { GetEvento } from 'src/app/shared/Models/Evento';
 
@@ -8,7 +9,7 @@ import { GetEvento } from 'src/app/shared/Models/Evento';
   templateUrl: './event-registration.component.html',
   styleUrls: ['./event-registration.component.css'],
   standalone:true,
-  imports:[CommonModule]
+  imports:[CommonModule, RouterModule]
 })
 export class EventRegistrationComponent implements OnInit {
   events: GetEvento[] = [];

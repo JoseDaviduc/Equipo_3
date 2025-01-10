@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['/eventos', '/eventos/*' ,'api/*', 'diseniopaquetes', 'sanctum/csrf-cookie'],
+    'paths' => ['/eventos', '/eventos/*', '/paquetes', 'paquetes/*', 'api/*', 'diseniopaquetes', 'dltpaquete/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 

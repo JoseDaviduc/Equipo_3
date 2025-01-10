@@ -25,5 +25,6 @@ class diseniopaquete extends Model
         'numero_de_colores_de_las_telas',
         'colores_de_las_telas',
         'paquete_de_sillones',
+        'total_a_pagar',
     ];
 }

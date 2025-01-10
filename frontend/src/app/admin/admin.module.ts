@@ -7,6 +7,7 @@ import { EventRegistrationComponent } from './event-registration/event-registrat
 import { PackageManagementComponent } from './package-management/package-management.component';
 import { RouterModule } from '@angular/router';
 import { PriceManagementComponent } from './price-management/price-management.component';
+import { PaquetesCreadosComponent } from './paquetes-creados/paquetes-creados.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PriceManagementComponent } from './price-management/price-management.co
     EventRegistrationComponent,
     PackageManagementComponent,
     PriceManagementComponent,
+    PaquetesCreadosComponent,
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { EventRegistrationComponent } from './admin/event-registration/event-registration.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/guards/auth.guard';
+import { PaquetesCreadosComponent } from './admin/paquetes-creados/paquetes-creados.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminDashboardComponent }, // Añadir una coma aquí
   { path: 'admin/events', component: EventRegistrationComponent },
   { path: '', component: InicioComponent },
+  { path: 'admin/paquetes', component:PaquetesCreadosComponent},
   { path: 'login', component: LoginComponent },         // Ruta para el login
   { path: '', redirectTo: '/login', pathMatch: 'full' }
   // Agrega más rutas según sea necesario
